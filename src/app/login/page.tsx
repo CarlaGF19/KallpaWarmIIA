@@ -51,11 +51,15 @@ export default function LoginForm() {
   };
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    router.push("/avatar");
     toast({
       title: "¡Inicio de sesión exitoso!",
       description: `¡Bienvenida de vuelta, ${values.nickname}!`,
     });
+    
+    // Navegar después de mostrar el toast
+    setTimeout(() => {
+      router.push("/avatar");
+    }, 100);
   }
 
   return (
