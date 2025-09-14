@@ -1,0 +1,259 @@
+/* Sidebar Reactivo - Estilos específicos para Dashboard */
+
+/* Hot Zone invisible para gestos de arrastre */
+.sidebar-hot-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 9998;
+  cursor: ew-resize;
+  background: transparent;
+}
+
+/* Overlay para móvil */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 9998;
+}
+
+/* Sidebar principal */
+.sidebar-reactive {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  background: rgba(255, 0, 170, 0.65);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0 16px 16px 0;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+}
+
+/* Estados del sidebar */
+.sidebar-reactive.collapsed {
+  width: 72px;
+}
+
+.sidebar-reactive.expanded {
+  width: 232px;
+}
+
+/* Animaciones suaves */
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar-reactive {
+    transition: width 280ms ease-out, opacity 280ms ease-out;
+  }
+  
+  .sidebar-reactive.collapsed {
+    transition: width 280ms ease-in;
+  }
+}
+
+/* Botón hamburguesa */
+.sidebar-hamburger {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.sidebar-hamburger:hover {
+  border: 1px solid #06B6D4;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+}
+
+.sidebar-hamburger:focus {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
+}
+
+/* Navegación */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+/* Elementos de navegación */
+.sidebar-item {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Estados de los elementos */
+.sidebar-item:hover:not(.active) {
+  border: 1px solid #FACC15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
+  transform: scale(1.02);
+}
+
+.sidebar-item.active {
+  background: linear-gradient(135deg, #FF00AA 0%, #8B5CF6 100%);
+  border: 1px solid #06B6D4;
+  color: #FFFFFF;
+}
+
+.sidebar-item:focus {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
+}
+
+/* Íconos */
+.sidebar-item svg {
+  transition: transform 200ms ease;
+}
+
+.sidebar-item.active svg {
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.4));
+}
+
+/* Tooltips para modo colapsado */
+.sidebar-item-container:hover .sidebar-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 250ms;
+}
+
+.sidebar-tooltip {
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease, visibility 250ms ease;
+  pointer-events: none;
+  z-index: 10000;
+  white-space: nowrap;
+}
+
+/* Animaciones de texto en modo expandido */
+.sidebar-reactive.expanded .sidebar-item span {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.sidebar-reactive.collapsed .sidebar-item span {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+  .sidebar-hot-zone {
+    width: 16px;
+  }
+  
+  .sidebar-reactive.expanded {
+    width: 70%;
+  }
+  
+  .sidebar-tooltip {
+    display: none; /* No mostrar tooltips en móvil */
+  }
+}
+
+/* Responsive para tablet */
+@media (max-width: 1024px) {
+  .sidebar-reactive.expanded {
+    width: 280px;
+  }
+}
+
+/* Accesibilidad - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-reactive,
+  .sidebar-hamburger,
+  .sidebar-item,
+  .sidebar-tooltip,
+  .sidebar-item svg,
+  .sidebar-item span {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Estados de focus visible para accesibilidad */
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar-hamburger:focus,
+  .sidebar-item:focus {
+    transition: outline 150ms ease;
+  }
+}
+
+/* Mejoras de contraste para accesibilidad */
+@media (prefers-contrast: high) {
+  .sidebar-reactive {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .sidebar-item {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .sidebar-item.active {
+    border: 2px solid #06B6D4;
+  }
+}
+
+/* Histeresis para evitar bamboleo */
+.sidebar-reactive.dragging {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Estilos para el contenido principal con margen dinámico */
+#default-view {
+  transition: margin-left 280ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #default-view {
+    transition: none !important;
+  }
+}

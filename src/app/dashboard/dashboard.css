@@ -1,0 +1,3075 @@
+/* ===== KallpaIA Dashboard Styles - Scoped ===== */
+
+/* Prevenir overflow horizontal */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.kallpa-dashboard {
+  /* Paleta cósmica game-like */
+  --rosa-neon: #EC4899;
+  --fucsia: #FF00AA;
+  --morado-claro: #A855F7;
+  --lavanda: #D8B4FE;
+  --azul-brillante: #3B82F6;
+  --cian-electrico: #06B6D4;
+  --amarillo-estrella: #FACC15;
+  --blanco: #FFFFFF;
+  --negro: #000000;
+  
+  /* Tokens de Glassmorphism */
+  --glass-claro: rgba(255,255,255,0.10);
+  --glass-intenso: rgba(255,255,255,0.14);
+  --borde-glass: 1px solid rgba(255,255,255,0.18);
+  --blur-glass: blur(14px);
+  --sombra-glass: 0 8px 40px rgba(0,0,0,0.35);
+  --glow-cian: 0 0 0 1px var(--cian-electrico);
+  
+  /* Variables legacy (mantener compatibilidad) */
+  --bg: #0B0F19;
+  --glass: var(--glass-claro);
+  --primary: var(--morado-claro);
+  --blue: var(--azul-brillante);
+  --green: #22C55E;
+  --yellow: var(--amarillo-estrella);
+  --pink: var(--rosa-neon);
+  --text: var(--blanco);
+  --muted: #9CA3AF;
+  --border: var(--borde-glass);
+  --ease: cubic-bezier(.2,.8,.2,1);
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* 1) Ambiente: fondo con constelaciones */
+.kallpa-dashboard .bg-sky{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background: var(--bg);
+}
+.kallpa-dashboard .bg-sky::before,
+.kallpa-dashboard .bg-sky::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-repeat:repeat;
+  opacity:.7
+}
+.kallpa-dashboard .bg-sky::before{
+  background-image:
+    radial-gradient(1px 1px at 10% 20%,#fff 60%,transparent 61%),
+    radial-gradient(1px 1px at 40% 70%,#fff 60%,transparent 61%);
+  animation: skyMove 60s linear infinite;
+}
+.kallpa-dashboard .bg-sky::after{
+  background-image:
+    radial-gradient(2px 2px at 75% 30%,#fff 65%,transparent 66%),
+    radial-gradient(2px 2px at 30% 85%,#fff 65%,transparent 66%);
+  animation: skyMove 120s linear infinite, twinkle 3.2s ease-in-out infinite;
+}
+@keyframes skyMove{to{background-position:1200px 700px}}
+@keyframes twinkle{0%,100%{opacity:.35}50%{opacity:.9}}
+
+.kallpa-dashboard > *:not(.bg-sky){
+  position:relative;
+  z-index:1
+}
+
+/* 2) Tarjetas "glass" gaming con efectos avanzados */
+.kallpa-dashboard .card-glass{
+  background: var(--glass-claro);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  backdrop-filter: var(--blur-glass);
+  border-radius:18px;
+  box-shadow: 
+    0 18px 50px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.1),
+    0 0 20px rgba(168,85,247,.1);
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.kallpa-dashboard .card-glass::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(135deg, 
+    rgba(168,85,247,.6) 0%, 
+    rgba(59,130,246,.4) 25%, 
+    rgba(139,92,246,.5) 50%, 
+    rgba(6,182,212,.3) 75%, 
+    rgba(168,85,247,.6) 100%);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  animation: gaming-border-glow 3s ease-in-out infinite;
+}
+.kallpa-dashboard .card-glass:hover{
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 30px 80px rgba(16, 5, 35, 0.8),
+    inset 0 1px 0 rgba(255,255,255,.2),
+    0 0 40px rgba(168,85,247,.4),
+    0 0 60px rgba(59,130,246,.2);
+}
+
+/* Variante glass intenso gaming */
+.kallpa-dashboard .card-glass-intenso{
+  background: var(--glass-intenso);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  backdrop-filter: var(--blur-glass);
+  border-radius:20px;
+  box-shadow: 
+    0 20px 60px rgba(16, 5, 35, 0.7),
+    inset 0 2px 0 rgba(255,255,255,.15),
+    0 0 30px rgba(168,85,247,.2);
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.kallpa-dashboard .card-glass-intenso::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  background: linear-gradient(135deg, 
+    rgba(168,85,247,.8) 0%, 
+    rgba(59,130,246,.6) 20%, 
+    rgba(139,92,246,.7) 40%, 
+    rgba(6,182,212,.5) 60%, 
+    rgba(168,85,247,.8) 80%, 
+    rgba(59,130,246,.6) 100%);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  animation: gaming-border-glow-intense 2.5s ease-in-out infinite;
+}
+.kallpa-dashboard .card-glass-intenso:hover{
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 
+    0 35px 90px rgba(0,0,0,.7),
+    inset 0 2px 0 rgba(255,255,255,.25),
+    0 0 50px rgba(168,85,247,.5),
+    0 0 80px rgba(59,130,246,.3);
+}
+
+/* Variante glass sutil gaming */
+.kallpa-dashboard .card-glass-sutil{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  backdrop-filter: blur(12px);
+  border-radius:16px;
+  box-shadow: 
+    0 12px 40px rgba(0,0,0,.3),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 15px rgba(139,92,246,.08);
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.kallpa-dashboard .card-glass-sutil::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgba(139,92,246,.4) 0%, 
+    rgba(59,130,246,.3) 33%, 
+    rgba(6,182,212,.2) 66%, 
+    rgba(139,92,246,.4) 100%);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  animation: gaming-border-glow 4s ease-in-out infinite;
+}
+.kallpa-dashboard .card-glass-sutil:hover{
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.15),
+    0 0 25px rgba(139,92,246,.2),
+    0 0 40px rgba(59,130,246,.1);
+}
+
+/* 3) Barra HP con shimmer + spark */
+.kallpa-dashboard .hp-bar{
+  height:10px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#121826;
+  border: none;
+  position: relative;
+}
+.kallpa-dashboard .hp-fill{
+  height:100%;
+  background: linear-gradient(90deg,#7C3AED,#3B82F6);
+  position:relative;
+  isolation:isolate;
+}
+.kallpa-dashboard .hp-fill::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  mix-blend-mode:screen;
+  background: linear-gradient(120deg,transparent 20%,rgba(255,255,255,.25) 50%,transparent 80%);
+  animation: shimmer 3.2s linear infinite;
+}
+.kallpa-dashboard .hp-spark{
+  position:absolute;
+  top:-6px;
+  left:0;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#fff;
+  filter:drop-shadow(0 0 6px #fff);
+  animation: spark 3.6s ease-in-out infinite;
+}
+@keyframes shimmer{to{transform:translateX(100%)}}
+@keyframes spark{0%{left:0}50%{left:50%}100%{left:100%}}
+
+/* 4) Sidebar reactivo con glassmorphism */
+.kallpa-dashboard .sidebar {
+  /* Desktop: fijo 232px */
+  width: 232px;
+  height: 100vh;
+  background: rgba(255, 0, 170, 0.65); /* Fucsia glass */
+  backdrop-filter: var(--blur-glass);
+  border: var(--borde-glass);
+  border-radius: 20px;
+  box-shadow: var(--sombra-glass);
+}
+
+/* Sidebar responsive */
+@media (max-width: 1024px) {
+  .kallpa-dashboard .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70%;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 300ms ease-out, opacity 300ms ease-out;
+    opacity: 0;
+  }
+  
+  .kallpa-dashboard .sidebar.open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .kallpa-dashboard .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-out;
+  }
+  
+  .kallpa-dashboard .sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.kallpa-dashboard .sidebar nav a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  height:44px;
+  padding:0 12px;
+  color: rgba(255,255,255,0.85);
+  border-radius:999px;
+  text-decoration:none;
+  transition: all 0.2s var(--ease);
+  position: relative;
+}
+
+.kallpa-dashboard .sidebar nav a:hover{
+  background: rgba(250, 204, 21, 0.2); /* Halo amarillo */
+  color: var(--blanco);
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+}
+
+.kallpa-dashboard .sidebar nav a.active{
+  background: linear-gradient(135deg, var(--rosa-neon), var(--morado-claro));
+  color: var(--blanco);
+  box-shadow: 0 0 0 2px var(--cian-electrico), 0 10px 22px rgba(236, 72, 153, 0.35);
+  border: 1px solid var(--cian-electrico);
+}
+
+.kallpa-dashboard .sidebar nav a:focus-visible{
+  outline: 2px solid var(--cian-electrico);
+  outline-offset: 2px;
+  box-shadow: var(--glow-cian);
+}
+.kallpa-dashboard .sidebar a.active:hover {
+    transform: scale(1.02);
+}
+.kallpa-dashboard .sidebar nav a:focus-visible{
+  outline:2px solid #3B82F6;
+  outline-offset:2px
+}
+.kallpa-dashboard .sidebar .icn{
+  width:18px;
+  height:18px;
+  color:currentColor;
+  flex-shrink: 0;
+}
+.kallpa-dashboard .sidebar .bot-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: botPulse 1.4s infinite ease-in-out;
+    margin-left: auto;
+}
+@keyframes botPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.kallpa-dashboard .sidebar .tooltip {
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background-color: #0B0F19;
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    border: 1px solid var(--border);
+}
+
+.kallpa-dashboard .sidebar a:hover .tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* 5) CTA “Jugar Videojuegos Vocacionales” */
+.kallpa-dashboard .cta{
+  --a: color-mix(in oklab, #3B82F6 28%, white 72%);
+  --b: color-mix(in oklab, #3B82F6 18%, white 82%);
+  display:inline-flex;
+  align-items:center;
+  justify-content: center;
+  gap:10px;
+  min-width:280px;
+  height:56px;
+  padding:0 24px;
+  border-radius:999px;
+  border: none;
+  background:linear-gradient(180deg,var(--a),var(--b));
+  color:#0B0F19;
+  font-weight:800;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.15), 0 10px 26px rgba(59,130,246,.25);
+  transition:transform .12s,filter .12s,box-shadow .18s; 
+  animation: bob 6s ease-in-out infinite;
+  position:relative;
+  overflow:hidden;
+}
+.kallpa-dashboard .cta:hover{
+  transform:scale(1.02);
+  filter:brightness(1.03);
+}
+.kallpa-dashboard .cta:focus-visible{
+  outline:3px solid #3B82F6;
+  outline-offset:3px
+}
+.kallpa-dashboard .cta:active{
+  transform:translateY(1px)
+}
+.kallpa-dashboard .cta:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.25),transparent 40%);
+  opacity:0;
+  transition:opacity .25s;
+}
+.kallpa-dashboard .cta:active:after{opacity:.4}
+@keyframes bob{50%{transform:translateY(-3px)}}
+
+/* 6) KPIs con count-up + lift */
+.kallpa-dashboard .kpi{
+  transform:translateZ(0);
+  transition:transform .18s,box-shadow .18s;
+  background: var(--glass);
+  border-radius: 18px;
+}
+.kallpa-dashboard .kpi:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 40px rgba(0,0,0,.35)
+}
+
+/* 7) Borde dorado del “Planeta Activo” */
+.kallpa-dashboard .planet{
+  border:1px solid #EAB308;
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+}
+.kallpa-dashboard .planet::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background: linear-gradient(90deg,transparent, rgba(234,179,8,.25), transparent);
+  mix-blend-mode:screen;
+  opacity:.0;
+  animation: sheen 5s linear infinite;
+}
+@keyframes sheen{50%{opacity:.4}100%{opacity:0}}
+
+
+/* 9) Performance y accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  .kallpa-dashboard *, .kallpa-dashboard *::before, .kallpa-dashboard *::after {
+    animation:none!important;
+    transition:none!important
+  }
+}
+
+
+/* ===== Chat IA Styles ===== */
+.chat-ia-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+}
+
+.chat-ia-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.chat-ia-header .bot-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: grid;
+    place-items: center;
+    border: none;
+}
+
+.chat-ia-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+}
+.chat-ia-header p {
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.chat-transcript {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chat-transcript::-webkit-scrollbar { width: 8px; }
+.chat-transcript::-webkit-scrollbar-track { background: transparent; }
+.chat-transcript::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+.chat-transcript::-webkit-scrollbar-thumb:hover { background-color: rgba(255,255,255,0.25); }
+
+.chat-bubble {
+    display: flex;
+    gap: 12px;
+    max-width: 85%;
+}
+
+.chat-bubble.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.chat-bubble .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.chat-bubble-content {
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.chat-bubble.assistant .chat-bubble-content {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-bottom-left-radius: 4px;
+}
+
+.chat-bubble.user .chat-bubble-content {
+    background: linear-gradient(135deg, var(--primary), var(--blue));
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble-content p:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.chat-input-area {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    background-color: transparent;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 101;
+    pointer-events: auto;
+}
+
+.chat-input-form {
+    display: flex;
+    gap: 12px;
+}
+
+.chat-input {
+    flex-grow: 1;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    z-index: 102;
+    pointer-events: auto;
+}
+.chat-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+}
+
+.chat-submit-btn {
+    height: 48px;
+    width: 48px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.chat-submit-btn:hover:not(:disabled) {
+    background-color: #6D28D9;
+}
+.chat-submit-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+.chat-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chat-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 50px;
+    color: var(--muted);
+}
+
+.chat-loading .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.chat-loading .dot:nth-child(1) { animation-delay: -0.32s; }
+.chat-loading .dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+}
+
+/* Animaciones para cartas Pokémon */
+@keyframes holographic {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(300%) rotate(45deg); }
+}
+
+@keyframes cardPulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.45), 0 0 25px rgba(250, 204, 21, 0.3);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 0 35px rgba(250, 204, 21, 0.5);
+  }
+}
+
+/* Estilos para scroll horizontal de badges */
+.badges-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.badges-carousel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.badges-carousel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.badges-carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Badges/Trofeos estilo Pokémon */
+.badge-card {
+  min-width: 88px;
+  width: 88px;
+  height: 120px;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+
+@media (max-width: 768px) {
+  .badge-card {
+    min-width: 76px;
+    width: 76px;
+    height: 104px;
+  }
+}
+
+/* Estados de badges */
+.badge-locked {
+  transform: scale(0.98);
+  filter: saturate(0.55) blur(1px);
+  position: relative;
+}
+
+.badge-locked::after {
+  content: '🔒';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .badge-locked::after {
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.badge-unlocked:hover {
+  transform: perspective(1000px) rotateX(1.5deg) rotateY(3deg) scale(1.02);
+}
+
+.badge-legendary {
+  animation: cardPulse 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+.badge-legendary::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #FACC15, #FF00AA, #06B6D4, #FACC15);
+  border-radius: 18px;
+  z-index: -1;
+  animation: holographic 10s linear infinite;
+}
+
+/* Rareza de marcos */
+.rarity-common { 
+  border: 2px solid #D8B4FE;
+  background: linear-gradient(135deg, rgba(216,180,254,0.1), rgba(216,180,254,0.05));
+}
+.rarity-rare { 
+  border: 2px solid #A855F7;
+  background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(168,85,247,0.08));
+}
+.rarity-epic { 
+  border: 2px solid #3B82F6;
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.08));
+}
+.rarity-legendary { 
+  border: 2px solid #FF00AA;
+  background: linear-gradient(135deg, rgba(255,0,170,0.2), rgba(255,0,170,0.1));
+  position: relative;
+}
+.rarity-legendary::after {
+  content: '⭐';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 16px;
+  z-index: 5;
+}
+.rarity-mythic { 
+  border: 2px solid #FACC15;
+  background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(6,182,212,0.1));
+  position: relative;
+}
+.rarity-mythic::after {
+  content: '💎';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 14px;
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .rarity-legendary::after,
+  .rarity-mythic::after {
+    font-size: 12px;
+    top: 2px;
+    right: 2px;
+  }
+}
+
+/* Efectos hover para cartas Pokémon */
+.pokemon-card:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+}
+
+.pokemon-card:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Estados de accesibilidad */
+.focus-visible,
+*:focus-visible {
+  outline: 2px solid #06B6D4 !important;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Navegación por teclado */
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
+  transition: all 0.2s ease;
+}
+
+/* Contraste mejorado para texto */
+.text-contrast-high {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.text-contrast-medium {
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Estados hover accesibles */
+.hover-accessible:hover {
+  background-color: rgba(6, 182, 212, 0.1);
+  border-color: #06B6D4;
+  transition: all 0.2s ease;
+}
+
+.hover-accessible:focus {
+  background-color: rgba(6, 182, 212, 0.15);
+  border-color: #06B6D4;
+}
+
+/* Botones con tamaño mínimo táctil */
+.btn-touch {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Carrusel accesible */
+.carousel-container:focus-within {
+  outline: 2px solid #06B6D4;
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* Skip links para navegación */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #06B6D4;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Animaciones adicionales para micro-interacciones */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(1deg); }
+  66% { transform: translateY(-4px) rotate(-1deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 40px rgba(168, 85, 247, 0.2);
+    filter: brightness(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.5), 0 0 60px rgba(168, 85, 247, 0.3);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+/* Efectos de flotación para elementos del dashboard */
+.planet-module {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+
+
+/* Efectos de brillo en hover para tarjetas */
+.quick-access-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.quick-access-card:hover::before {
+  left: 100%;
+}
+
+/* Partículas animadas para el fondo */
+@keyframes particleFloat {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.6; }
+  33% { transform: translateY(-20px) translateX(10px) rotate(120deg); opacity: 1; }
+  66% { transform: translateY(-10px) translateX(-5px) rotate(240deg); opacity: 0.8; }
+  100% { transform: translateY(0px) translateX(0px) rotate(360deg); opacity: 0.6; }
+}
+
+/* Optimización de rendimiento para animaciones */
+.planet-module,
+.pokemon-card,
+.quick-access-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Efectos de entrada suaves */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badges-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Efectos de resplandor para elementos activos */
+.sidebar .nav-item.active {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Transiciones suaves para todos los elementos interactivos */
+* {
+  transition-property: transform, opacity, box-shadow, filter;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos de hover mejorados */
+.sidebar .nav-item:hover {
+  transform: translateX(8px) scale(1.05);
+  filter: brightness(1.2);
+}
+
+
+
+#chat-view {
+  height: calc(100vh - 12rem);
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#default-view {
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#chat-view.hidden,
+#default-view.hidden {
+  display: none !important;
+}
+
+.user-avatar-glow {
+    filter: drop-shadow(0 0 8px var(--blue));
+}
+
+/* Ocultar barra de desplazamiento */
+.scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+/* Cápsulas Glossy para Header Gamificado */
+.glossy-capsule {
+    background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.8) 0%, 
+        rgba(168, 85, 247, 0.6) 25%,
+        rgba(236, 72, 153, 0.7) 50%,
+        rgba(59, 130, 246, 0.6) 75%,
+        rgba(34, 211, 238, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 12px 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glossy-capsule::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.glossy-capsule:hover::before {
+    left: 100%;
+}
+
+.glossy-capsule:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 0 20px rgba(124, 58, 237, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Variantes específicas de cápsulas */
+.level-capsule {
+    background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.9) 0%, 
+        rgba(168, 85, 247, 0.8) 100%);
+}
+
+.level-capsule:hover {
+    box-shadow: 
+        0 12px 40px rgba(16, 5, 35, 0.6),
+        0 0 25px rgba(124, 58, 237, 0.5);
+}
+
+.streak-capsule {
+    background: linear-gradient(135deg, 
+        rgba(251, 146, 60, 0.9) 0%, 
+        rgba(239, 68, 68, 0.8) 100%);
+}
+
+.streak-capsule:hover {
+    box-shadow: 
+        0 12px 40px rgba(16, 5, 35, 0.6),
+        0 0 25px rgba(251, 146, 60, 0.5);
+}
+
+.notifications-capsule {
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.9) 0%, 
+        rgba(147, 51, 234, 0.8) 100%);
+}
+
+.notifications-capsule:hover {
+    box-shadow: 
+        0 12px 40px rgba(16, 5, 35, 0.6),
+        0 0 25px rgba(59, 130, 246, 0.5);
+}
+
+.mission-capsule {
+    background: linear-gradient(135deg, 
+        rgba(34, 197, 94, 0.9) 0%, 
+        rgba(59, 130, 246, 0.8) 100%);
+}
+
+.mission-capsule:hover {
+    box-shadow: 
+        0 12px 40px rgba(16, 5, 35, 0.6),
+        0 0 25px rgba(34, 197, 94, 0.5);
+}
+
+/* Efecto shimmer para barras de progreso */
+.shimmer-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Animación de glow pulsante para cápsulas */
+@keyframes capsuleGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    50% { 
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(124, 58, 237, 0.4);
+    }
+}
+
+.glossy-capsule.animate-glow {
+    animation: capsuleGlow 3s ease-in-out infinite;
+}
+
+/* Responsive para cápsulas */
+@media (max-width: 768px) {
+    .glossy-capsule {
+        padding: 8px 16px;
+        border-radius: 40px;
+    }
+    
+    .mission-capsule {
+        min-width: 150px;
+    }
+}
+
+/* Efectos Líquidos para Sidebar Navigation */
+.liquid-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 44px;
+    padding: 0 12px;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.liquid-nav-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    z-index: 2;
+}
+
+/* Efecto líquido base */
+.liquid-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.1) 0%,
+        rgba(168, 85, 247, 0.15) 25%,
+        rgba(236, 72, 153, 0.1) 50%,
+        rgba(59, 130, 246, 0.15) 75%,
+        rgba(34, 211, 238, 0.1) 100%);
+    border-radius: 16px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Shimmer líquido */
+.liquid-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.2) 80%,
+        transparent 100%);
+    transition: left 0.6s ease;
+    z-index: 3;
+    border-radius: 16px;
+}
+
+/* Estados hover - efecto soap */
+.liquid-nav-item:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.3) 0%,
+        rgba(168, 85, 247, 0.4) 25%,
+        rgba(236, 72, 153, 0.3) 50%,
+        rgba(59, 130, 246, 0.4) 75%,
+        rgba(34, 211, 238, 0.3) 100%);
+    box-shadow: 
+        0 8px 32px rgba(16, 5, 35, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.liquid-nav-item:hover .liquid-shimmer {
+    left: 100%;
+}
+
+.liquid-nav-item:hover {
+    transform: translateX(4px) scale(1.02);
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estado activo */
+.liquid-nav-item.active::before {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(135deg, 
+        rgba(124, 58, 237, 0.8) 0%,
+        rgba(168, 85, 247, 0.9) 50%,
+        rgba(236, 72, 153, 0.8) 100%);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(124, 58, 237, 0.5);
+}
+
+.liquid-nav-item.active {
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(6px);
+}
+
+.liquid-nav-item.active .liquid-shimmer {
+    animation: liquidFlow 3s ease-in-out infinite;
+}
+
+/* Variante secundaria para footer */
+.liquid-nav-item.secondary:hover::before {
+    background: linear-gradient(135deg, 
+        rgba(107, 114, 128, 0.3) 0%,
+        rgba(156, 163, 175, 0.4) 50%,
+        rgba(209, 213, 219, 0.3) 100%);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.liquid-nav-item.secondary:hover {
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateX(2px) scale(1.01);
+}
+
+/* Animación de flujo líquido */
+@keyframes liquidFlow {
+    0% { left: -100%; }
+    50% { left: 0%; }
+    100% { left: 100%; }
+}
+
+/* Efecto de ondas en hover */
+.liquid-nav-item:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: liquidRipple 0.6s ease-out;
+    z-index: 1;
+}
+
+@keyframes liquidRipple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+
+/* Responsive para efectos líquidos */
+@media (max-width: 768px) {
+    .liquid-nav-item:hover {
+        transform: scale(1.02);
+    }
+    
+    .liquid-nav-item.active {
+        transform: scale(1.02);
+    }
+}
+
+/* Accesibilidad - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .liquid-nav-item,
+    .liquid-nav-item::before,
+    .liquid-nav-item::after,
+    .liquid-shimmer {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Planeta Glossy Flotante Central */
+.glossy-planet-sphere {
+    position: relative;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4))
+            drop-shadow(0 0 60px rgba(124, 58, 237, 0.3));
+    animation: planetFloat 6s ease-in-out infinite;
+}
+
+.glossy-planet-sphere:hover {
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5))
+            drop-shadow(0 0 80px rgba(124, 58, 237, 0.5))
+            drop-shadow(0 0 120px rgba(59, 130, 246, 0.3));
+}
+
+/* Gradiente radial personalizado */
+.bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Animaciones del planeta */
+@keyframes planetFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-15px) rotate(-2deg);
+    }
+}
+
+@keyframes animate-shimmer {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(200%) rotate(45deg);
+    }
+}
+
+.animate-shimmer {
+    animation: animate-shimmer 3s ease-in-out infinite;
+}
+
+/* Animación de partículas flotantes */
+@keyframes animate-float {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px) scale(1.2);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) translateX(-5px) scale(0.8);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-15px) translateX(15px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+.animate-float {
+    animation: animate-float var(--animation-duration, 4s) ease-in-out infinite;
+}
+
+/* Animación de estrellas parpadeantes */
+@keyframes animate-twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.animate-twinkle {
+    animation: animate-twinkle 2s ease-in-out infinite;
+}
+
+/* Efectos de aura pulsante */
+@keyframes auralPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+/* Anillos orbitales */
+.animate-spin {
+    animation: spin linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Efectos de glow para el planeta */
+.glossy-planet-sphere::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(124, 58, 237, 0.3),
+        transparent,
+        rgba(59, 130, 246, 0.3),
+        transparent,
+        rgba(236, 72, 153, 0.3),
+        transparent
+    );
+    animation: rotate 8s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glossy-planet-sphere:hover::before {
+    opacity: 1;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive para planeta */
+@media (max-width: 768px) {
+    .glossy-planet-sphere {
+        filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3))
+                drop-shadow(0 0 40px rgba(124, 58, 237, 0.2));
+    }
+    
+    @keyframes planetFloat {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+}
+
+/* Optimización de rendimiento */
+.glossy-planet-sphere,
+.animate-float,
+.animate-twinkle,
+.animate-shimmer {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes progress-glow-pulse {
+  0%, 100% {
+    filter: 
+      drop-shadow(0 0 20px currentColor)
+      drop-shadow(0 0 40px currentColor);
+  }
+  50% {
+    filter: 
+      drop-shadow(0 0 30px currentColor)
+      drop-shadow(0 0 60px currentColor)
+      drop-shadow(0 0 90px currentColor);
+  }
+}
+
+@keyframes progress-work-pulse {
+  0%, 100% {
+    filter: 
+      drop-shadow(0 0 20px #3B82F6)
+      drop-shadow(0 0 40px #8B5CF6);
+  }
+  50% {
+    filter: 
+      drop-shadow(0 0 30px #3B82F6)
+      drop-shadow(0 0 60px #8B5CF6)
+      drop-shadow(0 0 90px #EC4899);
+  }
+}
+
+@keyframes progress-break-pulse {
+  0%, 100% {
+    filter: 
+      drop-shadow(0 0 20px #10B981)
+      drop-shadow(0 0 40px #22C55E);
+  }
+  50% {
+    filter: 
+      drop-shadow(0 0 30px #10B981)
+      drop-shadow(0 0 60px #22C55E)
+      drop-shadow(0 0 90px #84CC16);
+  }
+}
+
+@keyframes progress-ring-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes progress-fill-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(147, 51, 234, 0.7),
+      0 0 40px rgba(147, 51, 234, 0.5),
+      inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(147, 51, 234, 0.9),
+      0 0 60px rgba(147, 51, 234, 0.7),
+      0 0 90px rgba(147, 51, 234, 0.5),
+      inset 0 2px 0 rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes progress-shimmer-gaming {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+@keyframes progress-border-glow {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes progress-particles-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-2px) scale(1.1);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(1px) scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+/* ===== ANIMACIONES GAMING PARA BOTONES ===== */
+@keyframes neon-border-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes holographic-sweep {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px currentColor,
+      0 0 40px currentColor,
+      0 0 60px currentColor;
+  }
+  50% {
+    box-shadow: 
+      0 0 30px currentColor,
+      0 0 60px currentColor,
+      0 0 90px currentColor;
+  }
+}
+
+@keyframes button-glow-pulse {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.3) saturate(1.2);
+  }
+}
+
+/* ===== BOTONES GAMING ADICIONALES ===== */
+.gaming-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid transparent;
+  backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.gaming-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  padding: 2px;
+  background: linear-gradient(45deg, transparent, currentColor, transparent);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: neon-border-rotate 3s linear infinite;
+}
+
+.gaming-btn:hover::before {
+  opacity: 0.6;
+}
+
+.gaming-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.2);
+}
+
+/* Variantes de colores gaming */
+.gaming-btn-cyan {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(6, 182, 212, 0.2));
+  color: #22D3EE;
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+.gaming-btn-purple {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(124, 58, 237, 0.2));
+  color: #9333EA;
+  border-color: rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.8);
+}
+
+.gaming-btn-pink {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.2));
+  color: #EC4899;
+  border-color: rgba(236, 72, 153, 0.5);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  
+  .gaming-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .gaming-btn:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+}
+
+
+
+/* Accesibilidad para animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .glossy-planet-sphere,
+    .animate-float,
+    .animate-twinkle,
+    .animate-shimmer,
+    .animate-spin {
+        animation: none !important;
+    }
+    
+    .glossy-planet-sphere {
+        transform: none !important;
+    }
+    
+    .gaming-btn::before {
+        animation: none !important;
+    }
+    
+    .gaming-btn:hover {
+        transform: translateY(-1px) scale(1.02) !important;
+    }
+}
+
+/* Stickers Bubbly Coleccionables */
+.bubbly-sticker {
+    position: relative;
+    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.bubbly-sticker::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 40%;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%);
+    border-radius: 20px 20px 40px 40px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Estados de stickers */
+.sticker-unlocked {
+    filter: brightness(1.1) saturate(1.2);
+    animation: stickerFloat 4s ease-in-out infinite;
+}
+
+.sticker-unlocked:hover {
+    filter: brightness(1.2) saturate(1.3);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(124, 58, 237, 0.3);
+}
+
+.sticker-locked {
+    filter: grayscale(0.8) brightness(0.7) saturate(0.3);
+    transform: scale(0.95);
+}
+
+.sticker-locked:hover {
+    filter: grayscale(0.6) brightness(0.8) saturate(0.5);
+    transform: scale(0.98);
+}
+
+.sticker-legendary {
+    animation: legendaryPulse 2s ease-in-out infinite;
+    position: relative;
+}
+
+.sticker-legendary::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: conic-gradient(
+        from 0deg,
+        #FACC15,
+        #F59E0B,
+        #EAB308,
+        #FACC15
+    );
+    border-radius: 24px;
+    z-index: -1;
+    animation: rotate 3s linear infinite;
+}
+
+/* Animaciones para stickers */
+@keyframes stickerFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-3px) rotate(1deg);
+    }
+    50% {
+        transform: translateY(-1px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-2px) rotate(-1deg);
+    }
+}
+
+@keyframes legendaryPulse {
+    0%, 100% {
+        filter: brightness(1.1) saturate(1.2) drop-shadow(0 0 10px rgba(250, 204, 21, 0.5));
+    }
+    50% {
+        filter: brightness(1.3) saturate(1.4) drop-shadow(0 0 20px rgba(250, 204, 21, 0.8));
+    }
+}
+
+/* Efectos de textura bubbly */
+.bubbly-sticker .bubble-texture {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Responsive para stickers */
+@media (max-width: 768px) {
+    .bubbly-sticker {
+        width: 80px;
+        height: 108px;
+        box-shadow: 
+            0 6px 24px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .bubbly-sticker:hover {
+        transform: scale(1.05) rotate(2deg);
+    }
+}
+
+/* Accesibilidad para stickers */
+@media (prefers-reduced-motion: reduce) {
+    .bubbly-sticker,
+    .sticker-unlocked,
+    .sticker-legendary {
+        animation: none !important;
+    }
+    
+    .bubbly-sticker:hover {
+        transform: none !important;
+    }
+}
+
+/* Optimización de rendimiento para stickers */
+.bubbly-sticker {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Efectos de colección */
+.badges-collection-container {
+    position: relative;
+}
+
+.badges-collection-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle at center, 
+        rgba(124, 58, 237, 0.1) 0%,
+        transparent 70%);
+    border-radius: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.badges-collection-container:hover::before {
+    opacity: 1;
+}
+
+/* ===== ESTILOS PARA TARJETAS GLOSSY DE ACCESOS RÁPIDOS ===== */
+
+/* Contenedor principal de tarjetas glossy */
+.glossy-quick-access-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+/* Estados hover para tarjetas */
+.glossy-quick-access-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Efectos de glow dinámico */
+.glossy-quick-access-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(59, 130, 246, 0.3), 
+    rgba(168, 85, 247, 0.3), 
+    rgba(34, 211, 238, 0.3),
+    rgba(59, 130, 246, 0.3)
+  );
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: quickAccessGlow 3s linear infinite;
+}
+
+.glossy-quick-access-card:hover::before {
+  opacity: 1;
+}
+
+/* Animación de glow rotativo */
+@keyframes quickAccessGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Estilos para emojis animados */
+.glossy-quick-access-card .emoji-bounce {
+  animation: emojiFloat 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(16, 5, 35, 0.5));
+}
+
+@keyframes emojiFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+/* Contenedores de iconos glossy */
+.glossy-quick-access-card .icon-container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 4px 12px rgba(16, 5, 35, 0.4);
+  transition: all 0.3s ease;
+}
+
+.glossy-quick-access-card:hover .icon-container {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 20px rgba(16, 5, 35, 0.5);
+}
+
+/* Badges "NUEVO" con efectos */
+.glossy-quick-access-card .new-badge {
+  background: linear-gradient(135deg, #FACC15, #F59E0B);
+  box-shadow: 
+    0 4px 12px rgba(251, 191, 36, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: newBadgePulse 2s ease-in-out infinite;
+}
+
+@keyframes newBadgePulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.6);
+  }
+}
+
+/* Contadores con efectos glossy */
+.glossy-quick-access-card .counter-badge {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glossy-quick-access-card:hover .counter-badge {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Botones de acción con efectos */
+.glossy-quick-access-card .action-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glossy-quick-access-card:hover .action-button {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(8px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Efectos de reflejo glossy */
+.glossy-quick-access-card .glossy-reflection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+}
+
+/* Responsive para tarjetas glossy */
+@media (max-width: 768px) {
+  .glossy-quick-access-card {
+    border-radius: 20px;
+  }
+  
+  .glossy-quick-access-card .emoji-bounce {
+    font-size: 2.5rem;
+  }
+  
+  .glossy-quick-access-card .icon-container {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glossy-quick-access-card {
+    border-radius: 16px;
+    margin: 0 4px;
+  }
+  
+  .glossy-quick-access-card .emoji-bounce {
+    font-size: 2rem;
+  }
+}
+
+/* Accesibilidad para tarjetas glossy */
+@media (prefers-reduced-motion: reduce) {
+  .glossy-quick-access-card,
+  .emoji-bounce,
+  .new-badge {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .glossy-quick-access-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Mission Cards Glossy Styles */
+.mission-card {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.mission-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  pointer-events: none;
+}
+
+.mission-card:hover {
+  will-change: auto;
+}
+
+/* Mission Add Button */
+.mission-add-button {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.mission-add-button::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(45deg, 
+    rgba(59, 130, 246, 0.4),
+    rgba(147, 51, 234, 0.4),
+    rgba(59, 130, 246, 0.4)
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mission-add-button:hover::before {
+  opacity: 1;
+}
+
+/* XP Reward Animation */
+@keyframes xp-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(251, 191, 36, 0);
+  }
+}
+
+.mission-card:hover [class*="yellow-400"] {
+  animation: xp-pulse 2s infinite;
+}
+
+/* Difficulty Badge Glow */
+.mission-card [class*="purple-400"] {
+  box-shadow: 0 0 12px rgba(147, 51, 234, 0.3);
+}
+
+.mission-card [class*="blue-400"]:not([class*="yellow"]) {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+.mission-card [class*="green-400"]:not([class*="yellow"]):not([class*="red"]) {
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Mission Cards Responsive */
+@media (max-width: 768px) {
+  .mission-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .mission-card [class*="purple-400"],
+  .mission-card [class*="blue-400"]:not([class*="yellow"]),
+  .mission-card [class*="green-400"]:not([class*="yellow"]):not([class*="red"]) {
+    box-shadow: 0 0 6px rgba(147, 51, 234, 0.2);
+  }
+}
+
+/* Mission Cards Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .mission-add-button::before {
+    transition: none;
+  }
+  
+  @keyframes xp-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+  }
+}
+
+/* ========================================
+   🌌 FONDO CÓSMICO EXCLUSIVO DASHBOARD
+   ======================================== */
+
+/* Gradiente base cósmico STEM vibrante */
+.cosmic-dashboard-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, 
+    #0c0a1e 0%,     /* Púrpura espacial profundo */
+    #1a0b3d 20%,    /* Violeta oscuro */
+    #2d1b69 35%,    /* Azul índigo científico */
+    #1e3a8a 50%,    /* Azul real brillante */
+    #0f766e 65%,    /* Verde esmeralda STEM */
+    #7c2d12 80%,    /* Naranja cósmico */
+    #581c87 95%,    /* Violeta profundo */
+    #0c0a1e 100%    /* Regreso al púrpura espacial */
+  );
+  z-index: -100;
+  overflow: hidden;
+  animation: cosmic-shift 25s ease-in-out infinite;
+}
+
+/* Animación sutil del fondo cósmico */
+@keyframes cosmic-shift {
+  0%, 100% {
+    background: linear-gradient(135deg, 
+      #0c0a1e 0%, #1a0b3d 20%, #2d1b69 35%, #1e3a8a 50%, 
+      #0f766e 65%, #7c2d12 80%, #581c87 95%, #0c0a1e 100%
+    );
+  }
+  33% {
+    background: linear-gradient(135deg, 
+      #1a0b3d 0%, #2d1b69 20%, #1e3a8a 35%, #0f766e 50%, 
+      #7c2d12 65%, #581c87 80%, #0c0a1e 95%, #1a0b3d 100%
+    );
+  }
+  66% {
+    background: linear-gradient(135deg, 
+      #2d1b69 0%, #1e3a8a 20%, #0f766e 35%, #7c2d12 50%, 
+      #581c87 65%, #0c0a1e 80%, #1a0b3d 95%, #2d1b69 100%
+    );
+  }
+}
+
+/* Nebulosas suaves detrás de secciones */
+.cosmic-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  pointer-events: none;
+  animation: nebulaFloat 12s ease-in-out infinite;
+}
+
+.nebula-purple {
+  background: radial-gradient(circle, #10B981 0%, transparent 70%); /* Verde química */
+  width: 450px;
+  height: 450px;
+  top: 12%;
+  left: 3%;
+  animation-delay: 0s;
+}
+
+.nebula-pink {
+  background: radial-gradient(circle, #3B82F6 0%, transparent 70%); /* Azul física */
+  width: 380px;
+  height: 380px;
+  top: 18%;
+  right: 6%;
+  animation-delay: -4s;
+}
+
+.nebula-cyan {
+  background: radial-gradient(circle, #F59E0B 0%, transparent 70%); /* Naranja matemáticas */
+  width: 320px;
+  height: 320px;
+  bottom: 20%;
+  left: 12%;
+  animation-delay: -8s;
+}
+
+/* Estrellas dinámicas */
+.cosmic-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: #FFFFFF;
+  border-radius: 50%;
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+.star-small {
+  width: 2px;
+  height: 2px;
+}
+
+.star-medium {
+  width: 3px;
+  height: 3px;
+  background: #A5F3FC;
+}
+
+.star-large {
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 6px #FFFFFF;
+}
+
+/* Estrellas fugaces */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #FFFFFF, transparent);
+  border-radius: 50%;
+  animation: shootingStar 8s linear infinite;
+  opacity: 0;
+}
+
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, #FFFFFF, transparent);
+  transform: rotate(45deg);
+  transform-origin: 0 0;
+}
+
+/* Constelaciones STEM avanzadas */
+.constellation {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.12;
+  animation: float 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.2));
+}
+
+.constellation-line {
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0.7;
+  animation: constellationPulse 6s ease-in-out infinite;
+}
+
+.constellation-einstein {
+  top: 12%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.constellation-dna {
+  top: 15%;
+  right: 12%;
+  animation-delay: 1.5s;
+}
+
+.constellation-pythagoras {
+  bottom: 25%;
+  left: 15%;
+  animation-delay: 3s;
+}
+
+.constellation-atom-advanced {
+  bottom: 20%;
+  right: 18%;
+  animation-delay: 4.5s;
+}
+
+/* Animaciones específicas para cada constelación STEM */
+.constellation-einstein .constellation-line {
+  animation: constellationPulse 4s ease-in-out infinite, glow-green 6s ease-in-out infinite;
+}
+
+.constellation-dna .constellation-line {
+  animation: constellationPulse 5s ease-in-out infinite, glow-blue 7s ease-in-out infinite;
+}
+
+.constellation-pythagoras .constellation-line {
+  animation: constellationPulse 3.5s ease-in-out infinite, glow-orange 5.5s ease-in-out infinite;
+}
+
+.constellation-atom-advanced .constellation-line {
+  animation: constellationPulse 4.5s ease-in-out infinite, glow-pink 6.5s ease-in-out infinite;
+}
+
+@keyframes glow-green {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6)); }
+}
+
+@keyframes glow-blue {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)); }
+}
+
+@keyframes glow-orange {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.6)); }
+}
+
+@keyframes glow-pink {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6)); }
+}
+
+/* Halos reactivos para secciones específicas */
+.cosmic-halo {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* Halo del planeta */
+.planet-halo {
+  background: radial-gradient(circle, 
+    rgba(34, 197, 94, 0.3) 0%, 
+    rgba(59, 130, 246, 0.2) 50%, 
+    transparent 70%);
+  width: 200px;
+  height: 200px;
+}
+
+/* Halo de accesos rápidos */
+.quick-access-halo {
+  background: radial-gradient(circle, 
+    rgba(124, 58, 237, 0.3) 0%, 
+    rgba(168, 85, 247, 0.2) 50%, 
+    transparent 70%);
+  width: 180px;
+  height: 180px;
+}
+
+
+
+/* Activación de halos en hover */
+.hero-planet-block:hover ~ .cosmic-dashboard-bg .planet-halo,
+.quick-access-column:hover ~ .cosmic-dashboard-bg .quick-access-halo {
+  opacity: 1;
+}
+
+/* Animaciones cósmicas */
+@keyframes nebulaFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(20px, -15px) scale(1.1);
+  }
+  66% {
+    transform: translate(-15px, 10px) scale(0.9);
+  }
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) translateY(100px);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100vw) translateY(-100px);
+  }
+}
+
+@keyframes constellationPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Posicionamiento dinámico de estrellas */
+.star:nth-child(1) { top: 15%; left: 12%; animation-delay: 0s; }
+.star:nth-child(2) { top: 25%; left: 78%; animation-delay: -1s; }
+.star:nth-child(3) { top: 45%; left: 23%; animation-delay: -2s; }
+.star:nth-child(4) { top: 65%; left: 67%; animation-delay: -0.5s; }
+.star:nth-child(5) { top: 80%; left: 34%; animation-delay: -1.5s; }
+.star:nth-child(6) { top: 35%; left: 89%; animation-delay: -2.5s; }
+.star:nth-child(7) { top: 55%; left: 8%; animation-delay: -0.8s; }
+.star:nth-child(8) { top: 75%; left: 92%; animation-delay: -1.8s; }
+.star:nth-child(9) { top: 18%; left: 45%; animation-delay: -2.2s; }
+
+/* Animaciones gaming para bordes glassmorphism */
+@keyframes gaming-border-glow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: brightness(1) saturate(1);
+  }
+  25% {
+    opacity: 0.8;
+    filter: brightness(1.2) saturate(1.2);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.5) saturate(1.4);
+  }
+  75% {
+    opacity: 0.7;
+    filter: brightness(1.1) saturate(1.1);
+  }
+}
+
+@keyframes gaming-border-glow-intense {
+  0%, 100% {
+    opacity: 0.8;
+    filter: brightness(1.2) saturate(1.2);
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(1.5) saturate(1.5);
+  }
+  50% {
+    opacity: 1.2;
+    filter: brightness(2) saturate(1.8);
+  }
+  75% {
+    opacity: 0.9;
+    filter: brightness(1.3) saturate(1.3);
+  }
+}
+.star:nth-child(10) { top: 88%; left: 56%; animation-delay: -0.3s; }
+
+/* Estrellas fugaces posicionadas */
+.shooting-star:nth-child(1) {
+  top: 20%;
+  left: -100px;
+  animation-delay: 3s;
+}
+
+.shooting-star:nth-child(2) {
+  top: 60%;
+  left: -100px;
+  animation-delay: 12s;
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  .cosmic-nebula {
+    filter: blur(60px);
+    opacity: 0.12;
+  }
+  
+  .nebula-purple {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .nebula-pink {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .nebula-cyan {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .cosmic-halo {
+    filter: blur(25px);
+  }
+}
+
+/* ===== KEYFRAMES PARA EFECTOS GAMING DE ICONOS Y TIEMPO ===== */
+@keyframes icon-gaming-pulse {
+  0%, 100% {
+    transform: scale(1) rotateZ(0deg);
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotateZ(1deg);
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+  50% {
+    transform: scale(1.08) rotateZ(0deg);
+    filter: brightness(1.2) hue-rotate(10deg);
+  }
+  75% {
+    transform: scale(1.05) rotateZ(-1deg);
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+}
+
+@keyframes icon-ring-rotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes icon-inner-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes time-display-gaming-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(147, 51, 234, 0.6),
+      0 0 45px rgba(34, 211, 238, 0.4),
+      0 0 60px rgba(236, 72, 153, 0.3);
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% {
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 1),
+      0 0 40px rgba(147, 51, 234, 0.8),
+      0 0 60px rgba(34, 211, 238, 0.6),
+      0 0 80px rgba(236, 72, 153, 0.5);
+    filter: brightness(1.1) hue-rotate(10deg);
+  }
+  50% {
+    text-shadow: 
+      0 0 25px rgba(255, 255, 255, 1.2),
+      0 0 50px rgba(147, 51, 234, 1),
+      0 0 75px rgba(34, 211, 238, 0.8),
+      0 0 100px rgba(236, 72, 153, 0.7);
+    filter: brightness(1.3) hue-rotate(20deg);
+  }
+  75% {
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 1),
+      0 0 40px rgba(147, 51, 234, 0.8),
+      0 0 60px rgba(34, 211, 238, 0.6),
+      0 0 80px rgba(236, 72, 153, 0.5);
+    filter: brightness(1.1) hue-rotate(10deg);
+  }
+}
+
+@keyframes time-holographic-sweep {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes time-particles-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-5px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-8px) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-3px) rotate(270deg);
+    opacity: 1;
+  }
+}
+
+/* ===== TIPOGRAFÍA FUTURISTA GAMING ===== */
+.gaming-typography {
+  font-family: 'JetBrains Mono', 'Orbitron', 'Space Grotesk', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.gaming-title {
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #22d3ee 25%,
+    #9333ea 50%,
+    #ec4899 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gaming-text-gradient 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.gaming-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
+}
+
+/* ===== BADGES Y CHIPS GAMING ===== */
+.gaming-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+/* Efecto de resplandor holográfico */
+.gaming-badge::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 27px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    currentColor 90deg,
+    transparent 180deg,
+    currentColor 270deg,
+    transparent 360deg
+  );
+  animation: badge-ring-rotate 4s linear infinite;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+/* Efecto de partículas internas */
+.gaming-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, currentColor 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, currentColor 1px, transparent 1px);
+  background-size: 20px 20px, 15px 15px;
+  opacity: 0.2;
+  animation: badge-particles-float 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+.gaming-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.3);
+  box-shadow: 0 10px 30px rgba(16, 5, 35, 0.5);
+}
+
+/* Variantes de badges */
+.gaming-badge-xp {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.2));
+  color: #FBB928;
+  border-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+}
+
+.gaming-badge-level {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(124, 58, 237, 0.2));
+  color: #9333EA;
+  border-color: rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.8);
+}
+
+.gaming-badge-streak {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.2));
+  color: #EF4444;
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+}
+
+.gaming-badge-mission {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(22, 163, 74, 0.2));
+  color: #22C55E;
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+}
+
+/* ===== NOTIFICACIONES GAMING ===== */
+.gaming-notification {
+  background: linear-gradient(135deg, 
+    rgba(16, 5, 35, 0.9) 0%,
+    rgba(147, 51, 234, 0.2) 50%,
+    rgba(16, 5, 35, 0.9) 100%);
+  border: 2px solid rgba(147, 51, 234, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  padding: 1rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 30px rgba(147, 51, 234, 0.4),
+    0 10px 40px rgba(16, 5, 35, 0.5);
+  animation: notification-slide-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efecto de escaneo holográfico */
+.gaming-notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: notification-scan 3s ease-in-out infinite;
+}
+
+.gaming-notification-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(147, 51, 234, 0.8);
+}
+
+.gaming-notification-message {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* ===== KEYFRAMES PARA TIPOGRAFÍA Y BADGES GAMING ===== */
+@keyframes gaming-text-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes badge-ring-rotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes badge-particles-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-2px) rotate(90deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-3px) rotate(180deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-1px) rotate(270deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes notification-slide-in {
+  0% {
+    transform: translateX(100%) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes notification-scan {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Accesibilidad - reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-nebula,
+  .star,
+  .shooting-star,
+  .constellation-line {
+    animation: none !important;
+  }
+  
+  .cosmic-halo {
+    transition: none;
+  }
+}

@@ -1,0 +1,85 @@
+/* ===== Kallpa Avatar Neon Styles ===== */
+
+.kallpa-avatar {
+  --ka-math: #EAB308;
+  --ka-sci: #A78BFA;
+  --ka-eng: #F59E0B;
+  --ka-art: #EC4899;
+  --ka-tech: #3B82F6;
+}
+
+.kallpa-avatar .kcard__art {
+  display: grid;
+  place-items: center;
+}
+
+.kallpa-avatar .neon-icon {
+  transition: transform 140ms ease-out;
+  animation: neonPulse 4s infinite ease-in-out;
+}
+
+.kallpa-avatar .kcard:hover .neon-icon {
+  transform: scale(1.05);
+}
+
+.kallpa-avatar .neon-icon--math {
+  color: var(--ka-math);
+  filter: 
+    drop-shadow(0 0 12px var(--ka-math)) 
+    drop-shadow(0 0 24px var(--ka-math));
+}
+
+.kallpa-avatar .neon-icon--sci {
+  color: var(--ka-sci);
+  filter: 
+    drop-shadow(0 0 12px var(--ka-sci)) 
+    drop-shadow(0 0 24px var(--ka-sci));
+}
+
+.kallpa-avatar .neon-icon--eng {
+  color: var(--ka-eng);
+  filter: 
+    drop-shadow(0 0 12px var(--ka-eng)) 
+    drop-shadow(0 0 24px var(--ka-eng));
+}
+
+.kallpa-avatar .neon-icon--art {
+  color: var(--ka-art);
+  filter: 
+    drop-shadow(0 0 12px var(--ka-art)) 
+    drop-shadow(0 0 24px var(--ka-art));
+}
+
+.kallpa-avatar .neon-icon--tech {
+  color: var(--ka-tech);
+  filter: 
+    drop-shadow(0 0 12px var(--ka-tech)) 
+    drop-shadow(0 0 24px var(--ka-tech));
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    filter: 
+      drop-shadow(0 0 12px var(--color-glow)) 
+      drop-shadow(0 0 24px var(--color-glow));
+  }
+  50% {
+    filter: 
+      drop-shadow(0 0 16px var(--color-glow)) 
+      drop-shadow(0 0 30px var(--color-glow));
+  }
+}
+
+.kallpa-avatar .neon-icon--math { --color-glow: var(--ka-math); }
+.kallpa-avatar .neon-icon--sci { --color-glow: var(--ka-sci); }
+.kallpa-avatar .neon-icon--eng { --color-glow: var(--ka-eng); }
+.kallpa-avatar .neon-icon--art { --color-glow: var(--ka-art); }
+.kallpa-avatar .neon-icon--tech { --color-glow: var(--ka-tech); }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .kallpa-avatar .neon-icon {
+    animation: none;
+    transition: none;
+  }
+}

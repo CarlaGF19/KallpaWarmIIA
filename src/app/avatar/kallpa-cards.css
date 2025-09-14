@@ -1,0 +1,224 @@
+/* ===== Tokens / Paleta Futurista ===== */
+:root {
+  --bg: #0E1117;
+  --glass-panel: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(59, 130, 246, 0.08), rgba(0, 0, 0, 0.6));
+  --border-subtle: rgba(255, 255, 255, 0.2);
+  --inner-stroke: rgba(255, 255, 255, 0.1);
+  
+  --gold-frame: #FACC15;
+  
+  /* Planetas */
+  --chip-math: #22C55E;
+  --chip-sci: #7C3AED;
+  --chip-eng: #FACC15;
+  --chip-art: #EC4899;
+  --chip-tech: #3B82F6;
+
+  --text-strong: #FFFFFF;
+  --text-soft: rgba(255, 255, 255, 0.8);
+
+  /* Tamaños de cartas responsivas */
+  --card-w: clamp(140px, 15vw, 160px);
+  --card-h: calc(var(--card-w) * 1.5);
+  --card-r: 20px;
+}
+
+/* ===== Grid de cartas ===== */
+.kcards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.kcards > div {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.kcards > div::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+/* ===== Carta base ===== */
+.kcard {
+  position: relative;
+  cursor: pointer;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: var(--card-r);
+  background: var(--glass-panel);
+  padding: 12px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #7C3AED, #3B82F6, transparent) 1;
+  box-shadow: 
+    0 0 30px rgba(124, 58, 237, 0.4),
+    0 0 60px rgba(59, 130, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 15px 35px rgba(0, 0, 0, .4);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Holographic shimmer effect */
+.kcard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity .5s ease;
+  pointer-events: none;
+  transform: translateX(-100%) skewX(-15deg);
+  animation: holographic-sweep 3s ease-in-out infinite;
+}
+
+@keyframes holographic-sweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  50% { transform: translateX(100%) skewX(-15deg); }
+  100% { transform: translateX(-100%) skewX(-15deg); }
+}
+
+
+
+/* Hover / Selección */
+.kcard:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 
+    0 0 40px rgba(124, 58, 237, 0.4),
+    0 0 80px rgba(59, 130, 246, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+    0 20px 50px rgba(0, 0, 0, .5);
+  filter: brightness(1.1);
+}
+.kcard:hover::before {
+  opacity: 0.8;
+}
+
+.kcard--selected {
+  transform: translateY(-10px) scale(1.08);
+  border-image: linear-gradient(135deg, #FACC15, #EC4899, #22C55E) 1;
+  box-shadow: 
+    0 0 50px rgba(250, 204, 21, 0.4),
+    0 0 100px rgba(236, 72, 153, 0.3),
+    0 0 150px rgba(34, 197, 94, 0.2),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    0 25px 60px rgba(0, 0, 0, .6);
+  filter: brightness(1.2) saturate(1.2);
+}
+
+.kcard--selected::before {
+  opacity: 1;
+  background: linear-gradient(45deg, 
+    rgba(250, 204, 21, 0.1) 0%, 
+    rgba(236, 72, 153, 0.1) 25%, 
+    rgba(34, 197, 94, 0.1) 50%, 
+    rgba(59, 130, 246, 0.1) 75%, 
+    rgba(124, 58, 237, 0.1) 100%);
+  animation: rainbow-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes rainbow-shimmer {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(180deg); }
+}
+
+.kcard > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Header (chip) ===== */
+.kcard__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5rem;
+  margin-bottom: .35rem;
+  height: 36px;
+}
+
+.kcard__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 4px 10px;
+  border-radius: 9999px; /* Pill shape */
+  font-weight: 600;
+  font-size: 12px;
+  color: #0E1117; /* Texto oscuro sobre chip */
+}
+
+/* Variantes por planeta (color del chip) */
+.kcard--math .kcard__chip { background: var(--chip-math); }
+.kcard--sci .kcard__chip { background: var(--chip-sci); }
+.kcard--eng .kcard__chip { background: var(--chip-eng); }
+.kcard--art .kcard__chip { background: var(--chip-art); }
+.kcard--tech .kcard__chip { background: var(--chip-tech); }
+
+/* ===== Arte central ===== */
+.kcard__art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: .25rem 0;
+  flex-grow: 1;
+  border-radius: 12px; /* Inner radius */
+  overflow: hidden;
+}
+
+.kcard__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .45));
+  transition: transform .3s ease;
+}
+
+.kcard:hover .kcard__art img {
+  transform: scale(1.04);
+}
+
+/* ===== Títulos ===== */
+.kcard__title {
+  text-align: center;
+  margin-top: auto;
+  padding-bottom: 0.5rem;
+}
+
+.kcard__name {
+  font-weight: 700;
+  font-size: clamp(15px, 2vw, 16px);
+  letter-spacing: .01em; /* +1% tracking */
+  color: var(--text-strong);
+}
+
+.kcard__mentor {
+  color: var(--text-soft);
+  font-weight: 400;
+  font-size: clamp(11px, 1.6vw, 12px);
+  margin-top: 2px;
+}
+
+/* ===== Footer ===== */
+.kcard__footer {
+  margin-top: auto;
+  height: 28px;
+  display: grid;
+  place-items: center;
+}
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce) {
+  .kcard, .kcard__art img, .kcard::before {
+    transition: none !important;
+  }
+}

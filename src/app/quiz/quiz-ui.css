@@ -1,0 +1,2942 @@
+/* Variables CSS para colores galaxia */
+:root {
+  /* Paleta Galaxia Específica */
+  --bg-space: #0B0F19;        /* Fondo espacio oscuro */
+  --violet-galaxy: #7C3AED;    /* Violeta galaxia */
+  --blue-galaxy: #3B82F6;      /* Azul galaxia */
+  --green-neon: #22C55E;       /* Verde neón */
+  --yellow-stellar: #EAB308;   /* Amarillo estelar */
+  --red-cosmic: #EF4444;       /* Rojo cósmico */
+  
+  /* Colores de texto */
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-soft: #94a3b8;
+  
+  /* Efectos glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(20px);
+  
+  /* Gradientes galaxia */
+  --gradient-violet-blue: linear-gradient(135deg, var(--violet-galaxy) 0%, var(--blue-galaxy) 100%);
+  --gradient-progress: linear-gradient(90deg, var(--violet-galaxy) 0%, var(--blue-galaxy) 100%);
+  
+  /* Compatibilidad con variables existentes */
+  --cosmic-dark: var(--bg-space);
+  --cosmic-blue: var(--blue-galaxy);
+  --cosmic-purple: var(--violet-galaxy);
+  --magic-green: var(--green-neon);
+  --cosmic-pink: #EC4899;
+  
+  /* Cristales y Glassmorphism */
+  --crystal-glass: var(--glass-bg);
+  --crystal-border: var(--glass-border);
+  --crystal-glow: rgba(124, 58, 237, 0.3);
+  --crystal-hover-glow: rgba(59, 130, 246, 0.4);
+  
+  /* Texto Mágico */
+  --text-crystal: var(--text-primary);
+  --text-glow: rgba(255, 255, 255, 0.9);
+  
+  /* Tipografía Futurista */
+  --font-magic: 'Poppins', 'Comic Neue', sans-serif;
+  --font-crystal: 'Inter', 'Nunito', sans-serif;
+  
+  /* Efectos 3D y Sombras */
+  --crystal-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 58, 237, 0.2);
+  --magic-glow: 0 0 40px rgba(59, 130, 246, 0.5), 0 0 80px rgba(124, 58, 237, 0.3);
+  --hover-lift: 0 15px 35px rgba(124, 58, 237, 0.4), 0 0 25px rgba(59, 130, 246, 0.3);
+}
+
+/* ===== Animaciones Mágicas ===== */
+@keyframes crystalFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(2deg); }
+  50% { transform: translateY(-4px) rotate(0deg); }
+  75% { transform: translateY(-12px) rotate(-2deg); }
+}
+
+@keyframes crystalGlow {
+  0%, 100% { box-shadow: var(--crystal-shadow); }
+  50% { box-shadow: var(--magic-glow); }
+}
+
+@keyframes magicShimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(200%) skewX(-15deg); opacity: 0; }
+}
+
+@keyframes energyFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes hamsterBounce {
+  0%, 100% { transform: translateY(0px) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* ===== Fondo Galaxia Estático ===== */
+.quiz-page-container {
+  background: url('https://i.ibb.co/213QPRVF/fondo-2.png') center/cover no-repeat, var(--bg-space);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-family: var(--font-crystal);
+  color: var(--text-crystal);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sin partículas animadas */
+.quiz-page-container::before {
+  display: none;
+}
+
+/* ===== Contenedor Principal Glassmorphism ===== */
+.quiz-container-glassmorphism {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 90vh;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+}
+
+/* ===== Barra de Progreso Superior ===== */
+.progress-bar-top {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  backdrop-filter: var(--glass-blur);
+}
+
+.progress-fill-galaxy {
+  height: 100%;
+  background: var(--gradient-violet-blue);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+}
+
+/* ===== Header Superior Glassmorphism ===== */
+.header-glassmorphism {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 16px 24px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.header-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.timer-display {
+  font-size: 1.2rem;
+}
+
+.timer-text {
+  background: var(--gradient-violet-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.crystals-display {
+  font-size: 1.1rem;
+}
+
+.crystals-number {
+  color: var(--yellow-stellar);
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+}
+
+.level-display {
+  font-size: 1rem;
+}
+
+.level-text {
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.level-display ⭐ {
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* ===== Layout Principal (Avatar + Pregunta) ===== */
+.main-content-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* ===== Área Avatar Dinámico ===== */
+.avatar-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-emoji {
+  font-size: 4rem;
+  animation: avatarBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.avatar-particles {
+  font-size: 1.2rem;
+  animation: particleFloat 3s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes avatarBounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-5px) rotate(120deg); }
+  66% { transform: translateY(5px) rotate(240deg); }
+}
+
+/* ===== Área de Pregunta Glassmorphism ===== */
+.question-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-container-glassmorphism {
+  width: 100%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+              0 0 20px rgba(124, 58, 237, 0.1);
+  text-align: center;
+}
+
+.question-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ===== Opciones de Respuesta Responsivas (3 arriba, 2 abajo) ===== */
+.options-container-responsive {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 29px;
+}
+
+.options-container-responsive .option-button-galaxy:nth-child(4) {
+  grid-column: 1 / 3;
+}
+
+.options-container-responsive .option-button-galaxy:nth-child(5) {
+  grid-column: 3 / 4;
+  grid-row: 2;
+}
+
+/* ===== Botones de Opciones con Colores Únicos ===== */
+.option-button-galaxy {
+  background: rgba(11, 15, 25, 0.4);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 14px 18px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.option-button-galaxy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--option-color, #3B82F6), transparent, var(--option-color, #3B82F6));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+/* Colores únicos por opción */
+.option-button-galaxy:nth-child(1) {
+  --option-color: #3B82F6; /* Azul eléctrico */
+}
+
+.option-button-galaxy:nth-child(2) {
+  --option-color: #7C3AED; /* Violeta cósmico */
+}
+
+.option-button-galaxy:nth-child(3) {
+  --option-color: #EC4899; /* Fucsia neón */
+}
+
+.option-button-galaxy:nth-child(4) {
+  --option-color: #22C55E; /* Verde neón */
+}
+
+.option-button-galaxy:nth-child(5) {
+  --option-color: #EAB308; /* Amarillo estelar */
+}
+
+/* ===== Efectos Hover y Estados ===== */
+.option-button-galaxy:hover:not(:disabled):not(.selected) {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px var(--option-color), 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.option-button-galaxy:hover:not(:disabled):not(.selected)::before {
+  opacity: 1;
+  background: linear-gradient(135deg, var(--option-color), rgba(255, 255, 255, 0.2), var(--option-color));
+}
+
+.option-button-galaxy:hover:not(:disabled) .option-text-galaxy {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Estado seleccionado con degradados únicos */
+.option-button-galaxy.selected:nth-child(1) {
+  background: linear-gradient(135deg, #3B82F6, #1E40AF) !important;
+  transform: scale(1.02);
+  box-shadow: 0 0 40px #3B82F6, 0 15px 50px rgba(0, 0, 0, 0.4);
+  animation: rippleEffect 0.6s ease-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.option-button-galaxy.selected:nth-child(2) {
+  background: linear-gradient(135deg, #7C3AED, #5B21B6) !important;
+  transform: scale(1.02);
+  box-shadow: 0 0 40px #7C3AED, 0 15px 50px rgba(0, 0, 0, 0.4);
+  animation: rippleEffect 0.6s ease-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.option-button-galaxy.selected:nth-child(3) {
+  background: linear-gradient(135deg, #EC4899, #BE185D) !important;
+  transform: scale(1.02);
+  box-shadow: 0 0 40px #EC4899, 0 15px 50px rgba(0, 0, 0, 0.4);
+  animation: rippleEffect 0.6s ease-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.option-button-galaxy.selected:nth-child(4) {
+  background: linear-gradient(135deg, #22C55E, #15803D) !important;
+  transform: scale(1.02);
+  box-shadow: 0 0 40px #22C55E, 0 15px 50px rgba(0, 0, 0, 0.4);
+  animation: rippleEffect 0.6s ease-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.option-button-galaxy.selected:nth-child(5) {
+  background: linear-gradient(135deg, #EAB308, #A16207) !important;
+  transform: scale(1.02);
+  box-shadow: 0 0 40px #EAB308, 0 15px 50px rgba(0, 0, 0, 0.4);
+  animation: rippleEffect 0.6s ease-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.option-button-galaxy.selected::before {
+  opacity: 0;
+}
+
+.option-button-galaxy.selected .option-text-galaxy {
+  color: #FFFFFF !important;
+  font-weight: 700;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.option-button-galaxy.selected .option-icon-galaxy {
+  filter: brightness(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+/* Estados de respuesta correcta/incorrecta */
+.option-button-galaxy.correct {
+  background: linear-gradient(135deg, #22C55E, rgba(34, 197, 94, 0.8)) !important;
+  --option-color: #22C55E;
+  animation: correctPulse 0.8s ease-out;
+}
+
+.option-button-galaxy.incorrect {
+  background: linear-gradient(135deg, #FF2D55, rgba(255, 45, 85, 0.8)) !important;
+  --option-color: #FF2D55;
+  animation: errorBlink 0.5s ease-in-out 3;
+}
+
+/* Botones deshabilitados */
+.option-button-galaxy:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
+
+/* ===== Estilos de Texto e Iconos ===== */
+.option-text-galaxy {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.option-icon-galaxy {
+  font-size: 48px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+.check-icon-galaxy {
+  color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+  animation: checkAppear 0.3s ease-out;
+}
+
+@keyframes checkAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== Botones de Opción Galaxia ===== */
+.option-button-galaxy {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  min-height: 68px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--option-color);
+  border-radius: 16px;
+  backdrop-filter: blur(20px) saturate(180%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto ripple */
+.option-button-galaxy::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, var(--option-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.option-button-galaxy:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Estados hover/focus */
+.option-button-galaxy:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 30px var(--option-glow), 0 12px 40px rgba(0, 0, 0, 0.3);
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.option-button-galaxy:hover .option-text-galaxy {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.option-button-galaxy:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--option-glow), 0 0 30px var(--option-glow);
+}
+
+/* Estados seleccionados */
+.option-button-galaxy.selected-correct {
+  background: linear-gradient(135deg, var(--option-color), rgba(0, 0, 0, 0.6));
+  border-color: var(--option-color);
+  box-shadow: 0 0 40px var(--option-glow), 0 0 60px var(--option-glow);
+  animation: correctPulse 0.8s ease-out, sparkleEffect 2s ease-in-out infinite;
+}
+
+.option-button-galaxy.selected-incorrect {
+  background: linear-gradient(135deg, #FF2D55, rgba(0, 0, 0, 0.6));
+  border-color: #FF2D55;
+  box-shadow: 0 0 30px rgba(255, 45, 85, 0.5);
+  animation: errorBlink 0.5s ease-in-out 3;
+}
+
+/* Partículas para respuesta correcta */
+.option-button-galaxy.selected-correct::after {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.5rem;
+  animation: sparkleRise 2s ease-out infinite;
+  pointer-events: none;
+}
+
+.option-icon-galaxy {
+  font-size: 3.2rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.option-text-galaxy {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex-grow: 1;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.check-icon-galaxy {
+  color: var(--text-primary);
+  flex-shrink: 0;
+  animation: checkBounce 0.5s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+/* Animaciones */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px var(--option-glow), 0 12px 40px rgba(0, 0, 0, 0.3); }
+  50% { box-shadow: 0 0 40px var(--option-glow), 0 12px 40px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes errorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes sparkleEffect {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes sparkleRise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-30px) scale(0.5); opacity: 0; }
+}
+
+@keyframes checkBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .quiz-container-glassmorphism {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .header-glassmorphism {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .header-item {
+    font-size: 0.9rem;
+  }
+
+  .timer-text, .crystals-number {
+    font-size: 1.1rem;
+  }
+
+  .main-content-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .avatar-emoji {
+    font-size: 3rem;
+  }
+
+  .question-container-glassmorphism {
+    padding: 24px 20px;
+  }
+
+  .question-text {
+    font-size: 1.3rem;
+  }
+
+  .options-container-responsive {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .options-container-responsive .option-button-galaxy:nth-child(4),
+  .options-container-responsive .option-button-galaxy:nth-child(5) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .option-button-galaxy {
+    padding: 14px 18px;
+    min-height: 62px;
+  }
+
+  .option-text-galaxy {
+    font-size: 1rem;
+  }
+
+  .option-icon-galaxy {
+    font-size: 2.8rem;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-container-glassmorphism {
+    padding: 12px;
+  }
+
+  .header-glassmorphism {
+    padding: 12px;
+  }
+
+  .question-container-glassmorphism {
+    padding: 20px 16px;
+  }
+
+  .question-text {
+    font-size: 1.2rem;
+  }
+
+  .option-button-galaxy {
+    padding: 12px 14px;
+    min-height: 54px;
+  }
+
+  .option-text-galaxy {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== Panel Cristal Estático ===== */
+.quiz-panel {
+  width: 100%;
+  max-width: 980px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto Holográfico en el Borde */
+.quiz-panel::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--cosmic-blue), var(--cosmic-purple), var(--magic-green), var(--cosmic-pink));
+  border-radius: 27px;
+  z-index: -1;
+  opacity: 0.6;
+  animation: energyFlow 3s linear infinite;
+  background-size: 400% 400%;
+}
+
+/* Personaje Guía Astro-Hámster */
+.quiz-panel::after {
+  content: '🐹✨';
+  position: absolute;
+  top: -15px;
+  right: 30px;
+  font-size: 32px;
+  animation: hamsterBounce 2s ease-in-out infinite;
+  z-index: 15;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+/* ===== Header Mágico del Quiz ===== */
+.quiz-header {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+/* ===== HUD de Gamificación Estilo Arcade ===== */
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(124, 58, 237, 0.2));
+  border: 2px solid var(--crystal-border);
+  border-radius: 20px;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-hud::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  animation: magicShimmer 3s ease-in-out infinite;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.hud-item.timer .hud-icon,
+.hud-item.timer .hud-value {
+  color: var(--cosmic-blue);
+  transition: all 0.3s ease;
+}
+
+.hud-item.timer .hud-icon.warning,
+.hud-item.timer .hud-value.warning {
+  color: #FF6B6B;
+  animation: pulseWarning 1s ease-in-out infinite;
+}
+
+.hud-item.crystals .hud-icon,
+.hud-item.crystals .hud-value {
+  color: var(--magic-green);
+}
+
+.hud-item.level .hud-icon,
+.hud-item.level .hud-value {
+  color: var(--cosmic-purple);
+}
+
+.hud-icon {
+  filter: drop-shadow(0 0 8px currentColor);
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.hud-value {
+  font-family: var(--font-magic);
+  font-size: 18px;
+  font-weight: 800;
+  text-shadow: 0 0 10px currentColor;
+  letter-spacing: 0.5px;
+}
+
+.hud-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes pulseWarning {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* ===== Modal de Tiempo Agotado ===== */
+/* Animación para el nuevo modal glassmorphism */
+@keyframes modalIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.96); 
+  } 
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  } 
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close-button:hover {
+  color: #FF6B6B;
+  transform: scale(1.1);
+}
+
+.modal-emoji {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: emojiBounce 0.6s ease-out;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.modal-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.modal-secondary-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.modal-continue-button {
+  background: linear-gradient(135deg, #EC4899, #22D3EE);
+  border: none;
+  border-radius: 12px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(236, 72, 153, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-continue-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.modal-continue-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 30px rgba(236, 72, 153, 0.4),
+    0 0 40px rgba(34, 211, 238, 0.3);
+  animation: buttonGlow 1.5s ease-in-out infinite;
+}
+
+.modal-continue-button:hover::before {
+  left: 100%;
+}
+
+/* Animaciones del modal */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalAppear {
+  from { 
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes emojiBounce {
+  0% { transform: scale(0) rotate(-180deg); }
+  50% { transform: scale(1.2) rotate(-90deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes buttonGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 30px rgba(236, 72, 153, 0.4),
+      0 0 40px rgba(34, 211, 238, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 8px 30px rgba(236, 72, 153, 0.6),
+      0 0 60px rgba(34, 211, 238, 0.5);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  25% { transform: translateX(-45%) translateY(-5px); }
+  50% { transform: translateX(-55%) translateY(-3px); }
+  75% { transform: translateX(-50%) translateY(-7px); }
+}
+
+/* Responsive para el modal */
+@media (max-width: 768px) {
+  .timeout-modal {
+    width: 90%;
+    padding: 30px 20px;
+  }
+  
+  .modal-emoji {
+    font-size: 3rem;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .modal-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeout-modal {
+    width: 95%;
+    padding: 25px 15px;
+  }
+  
+  .modal-emoji {
+    font-size: 2.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.3rem;
+  }
+}
+
+.quiz-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: var(--text-soft);
+  margin-bottom: 16px;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Medidor de Energía Mágica */
+.progress-track {
+  height: 16px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--crystal-border);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.progress-track::before {
+  content: '⚡ Energía Mágica';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  font-size: 12px;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--magic-green) 0%, 
+    var(--cosmic-blue) 30%, 
+    var(--cosmic-purple) 70%, 
+    var(--cosmic-pink) 100%);
+  border-radius: 20px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Líquido Brillante Animado */
+.progress-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent);
+  animation: magicShimmer 2s ease-in-out infinite;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  animation: energyFlow 1.5s ease-in-out infinite;
+}
+
+/* ===== Pregunta Mágica ===== */
+.quiz-question-title {
+  font-family: var(--font-magic);
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  margin: 32px 0 40px;
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(135deg, 
+    var(--cosmic-blue) 0%, 
+    var(--cosmic-purple) 30%, 
+    var(--magic-green) 60%, 
+    var(--cosmic-pink) 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: energyFlow 4s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  position: relative;
+  line-height: 1.3;
+}
+
+/* Efecto de Brillo Mágico en el Título */
+.quiz-question-title::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.3), 
+    rgba(124, 58, 237, 0.3), 
+    rgba(34, 197, 94, 0.3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(2px);
+  z-index: -1;
+}
+
+/* ===== Cartas Mágicas Flotantes ===== */
+.quiz-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  perspective: 1000px;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 70px;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: var(--text-crystal);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+}
+
+/* Efecto Shimmer en las Cartas */
+.option-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.option-item:hover::before {
+  left: 100%;
+}
+
+/* Estados de Hover y Selección */
+.option-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #3B82F6;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.option-item:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+.option-item.selected {
+  border-color: #7C3AED;
+  background: rgba(124, 58, 237, 0.2);
+  box-shadow: 0 6px 25px rgba(124, 58, 237, 0.4);
+}
+
+@keyframes selectedPulse {
+  0% { transform: translateY(-5px) scale(1.03); }
+  50% { transform: translateY(-8px) scale(1.05); }
+  100% { transform: translateY(-5px) scale(1.03); }
+}
+
+@keyframes selectedGlow {
+  0% {
+    box-shadow: 
+      0 0 30px rgba(124, 58, 237, 0.7),
+      0 15px 35px rgba(0, 0, 0, 0.4),
+      0 0 0 4px rgba(124, 58, 237, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 50px rgba(124, 58, 237, 1),
+      0 20px 45px rgba(0, 0, 0, 0.5),
+      0 0 0 6px rgba(124, 58, 237, 0.6),
+      0 0 80px rgba(59, 130, 246, 0.6);
+  }
+  100% {
+    box-shadow: 
+      0 0 30px rgba(124, 58, 237, 0.7),
+      0 15px 35px rgba(0, 0, 0, 0.4),
+      0 0 0 4px rgba(124, 58, 237, 0.4);
+  }
+}
+
+.option-item.selected::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(124, 58, 237, 0.2), 
+    rgba(59, 130, 246, 0.2));
+  border-radius: 16px;
+  animation: energyFlow 2s ease-in-out infinite;
+}
+
+.option-item .option-text {
+  flex-grow: 1;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Iconos Mejorados */
+.option-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+/* Icono de Check */
+.option-item .check-icon {
+  opacity: 0;
+  color: #22C55E;
+  transition: all 0.3s ease;
+  transform: scale(0.8);
+}
+
+.option-item.selected .check-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== Transiciones entre preguntas ===== */
+.quiz-container {
+  animation: questionSlideIn 0.8s ease-out;
+}
+
+@keyframes questionSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.quiz-question-title {
+  animation: titleFadeIn 1s ease-out 0.2s both;
+}
+
+@keyframes titleFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quiz-options-list {
+  animation: optionsSlideUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes optionsSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Footer Mágico del Quiz ===== */
+.quiz-footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Botón Cristal Mágico */
+.quiz-cta-button {
+  background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
+  color: var(--text-glow);
+  font-family: var(--font-magic);
+  font-weight: 700;
+  font-size: 18px;
+  padding: 16px 40px;
+  border-radius: 20px;
+  border: 2px solid var(--crystal-border);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4), 0 0 20px rgba(124, 58, 237, 0.3);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: crystalGlow 3s ease-in-out infinite;
+}
+
+/* Efecto Shimmer del Botón */
+.quiz-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.quiz-cta-button:hover::before {
+  left: 100%;
+}
+
+/* Estados del Botón Mágico */
+.quiz-cta-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--cosmic-purple), var(--magic-green));
+  box-shadow: var(--magic-glow);
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--magic-green);
+}
+
+.quiz-cta-button:active:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.quiz-cta-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(124, 58, 237, 0.3));
+  animation: none;
+}
+
+/* Partículas Mágicas alrededor del Botón */
+.quiz-cta-button:not(:disabled)::after {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 16px;
+  animation: hamsterBounce 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+/* ===== PANTALLA DE RESULTADOS GALAXIA ===== */
+.results-screen-galaxy {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0B0F19 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-crystal);
+  color: var(--text-crystal);
+  padding: 20px;
+}
+
+/* Partículas de estrellas flotantes */
+.floating-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star-particle {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: floatStar 6s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.star-particle:nth-child(odd) {
+  animation-delay: -2s;
+}
+
+.star-particle:nth-child(even) {
+  animation-delay: -4s;
+}
+
+/* Posicionamiento aleatorio de estrellas */
+.star-1 { top: 10%; left: 15%; animation-duration: 5s; }
+.star-2 { top: 20%; left: 80%; animation-duration: 7s; }
+.star-3 { top: 30%; left: 25%; animation-duration: 6s; }
+.star-4 { top: 40%; left: 90%; animation-duration: 8s; }
+.star-5 { top: 60%; left: 10%; animation-duration: 5.5s; }
+.star-6 { top: 70%; left: 75%; animation-duration: 6.5s; }
+.star-7 { top: 80%; left: 40%; animation-duration: 7.5s; }
+.star-8 { top: 15%; left: 60%; animation-duration: 5.8s; }
+.star-9 { top: 35%; left: 5%; animation-duration: 6.8s; }
+.star-10 { top: 55%; left: 85%; animation-duration: 7.2s; }
+.star-11 { top: 75%; left: 20%; animation-duration: 5.3s; }
+.star-12 { top: 85%; left: 65%; animation-duration: 6.3s; }
+.star-13 { top: 25%; left: 45%; animation-duration: 7.8s; }
+.star-14 { top: 45%; left: 70%; animation-duration: 5.7s; }
+.star-15 { top: 65%; left: 30%; animation-duration: 6.7s; }
+.star-16 { top: 5%; left: 35%; animation-duration: 8.2s; }
+.star-17 { top: 50%; left: 95%; animation-duration: 5.9s; }
+.star-18 { top: 90%; left: 50%; animation-duration: 6.9s; }
+.star-19 { top: 12%; left: 78%; animation-duration: 7.3s; }
+.star-20 { top: 38%; left: 12%; animation-duration: 5.4s; }
+
+/* Cristales cayendo suavemente */
+.falling-crystals-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crystal-fall {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: gentleFall 8s linear infinite;
+  opacity: 0.6;
+}
+
+.crystal-1 { left: 10%; animation-delay: 0s; }
+.crystal-2 { left: 25%; animation-delay: -2s; }
+.crystal-3 { left: 40%; animation-delay: -4s; }
+.crystal-4 { left: 55%; animation-delay: -1s; }
+.crystal-5 { left: 70%; animation-delay: -3s; }
+.crystal-6 { left: 85%; animation-delay: -5s; }
+.crystal-7 { left: 15%; animation-delay: -6s; }
+.crystal-8 { left: 75%; animation-delay: -7s; }
+
+/* Trofeo holográfico central */
+.holographic-trophy {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  z-index: 2;
+  animation: holographicGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.6));
+}
+
+/* Contenido principal */
+.results-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Título principal con degradado dorado */
+.results-main-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #EAB308 0%, #FACC15 50%, #FDE047 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s ease-in-out infinite, titleGlow 2s ease-in-out infinite;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 40px rgba(234, 179, 8, 0.6);
+  filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.4));
+}
+
+/* Subtítulo con gradiente holográfico */
+.results-subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #06B6D4 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holographicFlow 4s ease-in-out infinite;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+}
+
+/* Mensaje motivador */
+.results-message {
+  font-size: 1.3rem;
+  color: #E5E7EB;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards de recompensas glassmorphism */
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.reward-card {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reward-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: cardShimmer 3s ease-in-out infinite;
+  animation-delay: calc(var(--index, 0) * 0.5s);
+}
+
+.reward-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+.reward-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 15px currentColor);
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.reward-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3B82F6, #7C3AED, #22C55E);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: valueGlow 2s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+}
+
+.reward-label {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Botón Dashboard con gradiente galaxia */
+.dashboard-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #06B6D4 100%);
+  background-size: 200% 200%;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: buttonShine 2s ease-in-out infinite;
+}
+
+.dashboard-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  background-position: 100% 0;
+  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
+  animation: buttonPulse 1s ease-in-out infinite;
+}
+
+/* Título principal con degradado dorado */
+.results-main-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #EAB308 0%, #FACC15 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 30px rgba(234, 179, 8, 0.5);
+  animation: titleGlow 2s ease-in-out infinite;
+  letter-spacing: 2px;
+}
+
+/* Subtítulo nivel holográfico */
+.level-badge-holographic {
+  display: inline-block;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  backdrop-filter: blur(20px);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(59, 130, 246, 0.3);
+  animation: holographicPulse 2.5s ease-in-out infinite;
+}
+
+/* Mensaje motivador */
+.motivational-message {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 3rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1.6;
+  animation: messageSlideIn 1.2s ease-out 0.5s both;
+}
+
+/* Grid de recompensas */
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  animation: cardsSlideUp 1.5s ease-out 0.8s both;
+}
+
+/* Cards de recompensas glassmorphism */
+.reward-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.reward-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.reward-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.reward-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.reward-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Botón Dashboard Galaxia */
+.dashboard-button-galaxy {
+  background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 18px 40px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4), 0 0 20px rgba(59, 130, 246, 0.3);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: buttonGlow 3s ease-in-out infinite, buttonSlideIn 1.8s ease-out 1.2s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-button-galaxy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.dashboard-button-galaxy:hover::before {
+  left: 100%;
+}
+
+.dashboard-button-galaxy:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #3B82F6 0%, #22D3EE 100%);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 15px 50px rgba(0, 0, 0, 0.4);
+  animation: buttonPulse 1.5s ease-in-out infinite;
+}
+
+.dashboard-button-galaxy:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+  50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+}
+
+@keyframes gentleFall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes holographicGlow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.6)) hue-rotate(0deg); 
+    transform: translateX(-50%) scale(1);
+  }
+  50% { 
+    filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.9)) hue-rotate(30deg); 
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@keyframes contentSlideUp {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 30px rgba(234, 179, 8, 0.5); }
+  50% { text-shadow: 0 0 50px rgba(234, 179, 8, 0.8), 0 0 70px rgba(250, 204, 21, 0.6); }
+}
+
+@keyframes holographicPulse {
+  0%, 100% { 
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(59, 130, 246, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 50px rgba(124, 58, 237, 0.7), 0 0 80px rgba(59, 130, 246, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes messageSlideIn {
+  0% { transform: translateX(-30px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes cardsSlideUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes buttonGlow {
+  0%, 100% { box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4), 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 10px 40px rgba(124, 58, 237, 0.6), 0 0 40px rgba(59, 130, 246, 0.5); }
+}
+
+@keyframes buttonSlideIn {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes buttonPulse {
+  0%, 100% { transform: translateY(-3px) scale(1.05); }
+  50% { transform: translateY(-5px) scale(1.08); }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .results-main-title {
+    font-size: 2.5rem;
+  }
+  
+  .level-badge-holographic {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+  }
+  
+  .motivational-message {
+    font-size: 1.1rem;
+  }
+  
+  .rewards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .reward-card {
+    padding: 1.5rem;
+  }
+  
+  .dashboard-button-galaxy {
+    font-size: 1.1rem;
+    padding: 16px 32px;
+  }
+  
+  .holographic-trophy {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .results-main-title {
+    font-size: 2rem;
+  }
+  
+  .level-badge-holographic {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+  
+  .motivational-message {
+    font-size: 1rem;
+  }
+  
+  .reward-card {
+    padding: 1.2rem;
+  }
+  
+  .reward-icon {
+    font-size: 2.5rem;
+  }
+  
+  .reward-value {
+    font-size: 1.5rem;
+  }
+  
+  .holographic-trophy {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== Responsivo Mágico ===== */
+@media (max-width: 1024px) {
+  .quiz-panel { 
+    max-width: 750px; 
+    padding: 35px;
+  }
+  .quiz-question-title { 
+    font-size: 26px; 
+  }
+  .option-item {
+    min-height: 65px;
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz-panel::after {
+    font-size: 28px;
+    top: -12px;
+    right: 20px;
+  }
+  .quiz-question-title {
+    font-size: 24px;
+  }
+  .option-item {
+    min-height: 60px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-page-container {
+    padding: 8px;
+    align-items: flex-end;
+  }
+  .quiz-panel {
+    width: 100%;
+    padding: 24px 20px;
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 0;
+    animation: crystalFloat 8s ease-in-out infinite;
+  }
+  .quiz-panel::after {
+    font-size: 24px;
+    top: -8px;
+    right: 15px;
+  }
+  .quiz-question-title { 
+    font-size: 22px; 
+    margin: 20px 0 30px; 
+  }
+  .option-item { 
+    min-height: 58px; 
+    font-size: 15px;
+    padding: 14px 18px;
+    gap: 16px;
+  }
+  .option-icon {
+    font-size: 20px;
+  }
+  .quiz-cta-button {
+    font-size: 16px;
+    padding: 14px 32px;
+  }
+  .progress-track::before {
+    font-size: 11px;
+  }
+}
+
+/* ===== Efectos Adicionales ===== */
+/* Cristales flotantes decorativos */
+.quiz-page-container::after {
+  content: '💎 ⭐ 🔮 ✨ 💫';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 20px;
+  opacity: 0.3;
+  animation: crystalFloat 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Reducir animaciones para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+  .quiz-panel, .option-item, .quiz-cta-button, .progress-fill,
+  .quiz-page-container::before, .quiz-page-container::after {
+    animation: none !important;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  .option-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .quiz-cta-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+}
+
+/* ===== Iconos Cartoon por Categoría ===== */
+.option-item[data-category="Ciencia"] .option-icon::before {
+  content: '🔬';
+}
+.option-item[data-category="Tecnología"] .option-icon::before {
+  content: '💻';
+}
+.option-item[data-category="Ingeniería"] .option-icon::before {
+  content: '⚙️';
+}
+.option-item[data-category="Matemáticas"] .option-icon::before {
+  content: '📐';
+}
+.option-item[data-category="Arte"] .option-icon::before {
+  content: '🎨';
+}
+
+/* ===== PANTALLA DE NIVEL DESBLOQUEADO ===== */
+.level-unlocked-screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0B0F19 70%);
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* Cristales cayendo */
+.falling-crystals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crystal {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: fallAndGlow 4s linear infinite;
+  filter: drop-shadow(0 0 10px #3B82F6);
+}
+
+.crystal-1 { left: 10%; animation-delay: 0s; }
+.crystal-2 { left: 20%; animation-delay: 0.5s; }
+.crystal-3 { left: 30%; animation-delay: 1s; }
+.crystal-4 { left: 40%; animation-delay: 1.5s; }
+.crystal-5 { left: 50%; animation-delay: 2s; }
+.crystal-6 { left: 60%; animation-delay: 2.5s; }
+.crystal-7 { left: 70%; animation-delay: 3s; }
+.crystal-8 { left: 80%; animation-delay: 3.5s; }
+.crystal-9 { left: 15%; animation-delay: 0.8s; }
+.crystal-10 { left: 35%; animation-delay: 1.3s; }
+.crystal-11 { left: 55%; animation-delay: 1.8s; }
+.crystal-12 { left: 75%; animation-delay: 2.3s; }
+
+@keyframes fallAndGlow {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Estrella gigante central */
+.giant-star {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8rem;
+  z-index: 2;
+  animation: starPulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px #FFD700) drop-shadow(0 0 60px #FFA500);
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1) rotate(180deg);
+  }
+}
+
+/* Contenido principal */
+.unlock-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.unlock-title {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B, #4ECDC4);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite, titleBounce 2s ease-in-out infinite;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes titleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.level-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  border-radius: 50px;
+  border: 3px solid #FFD700;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+  animation: badgeGlow 2s ease-in-out infinite alternate;
+}
+
+.badge-star {
+  color: #FFD700;
+  filter: drop-shadow(0 0 10px #FFD700);
+}
+
+.level-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes badgeGlow {
+  0% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.5); }
+  100% { box-shadow: 0 0 50px rgba(124, 58, 237, 0.8), 0 0 70px rgba(59, 130, 246, 0.3); }
+}
+
+/* Texto con efecto de tipeo */
+.typing-text {
+  font-size: 1.2rem;
+  color: #E5E7EB;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 15px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(10px);
+  animation: typeWriter 4s steps(80) 1s both;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #3B82F6;
+}
+
+@keyframes typeWriter {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Animaciones para pantalla de resultados */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.8));
+  }
+}
+
+@keyframes holographicFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes cardShimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes valueGlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes buttonShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 20px 50px rgba(124, 58, 237, 0.8), 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+/* ===== PANTALLA DE RESULTADOS CÓSMICA ===== */
+.results-container-cosmic {
+  min-height: 100vh;
+  background: transparent;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.results-container-cosmic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #EAB308, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, #EAB308, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.2), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.8; }
+}
+
+.results-content-cosmic {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Nivel alcanzado - Barra glassmorphism horizontal */
+.level-achieved-block {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  padding: 16px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.7);
+  animation: levelGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+.level-achieved-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes levelGlow {
+  0% { 
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+    border-image: linear-gradient(135deg, #7C3AED, #3B82F6) 1;
+  }
+  100% { 
+    box-shadow: 0 0 50px rgba(124, 58, 237, 0.6), 0 0 80px rgba(59, 130, 246, 0.4);
+    border-image: linear-gradient(135deg, #3B82F6, #7C3AED) 1;
+  }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.level-text-cosmic {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-shadow: 0 0 20px #EAB308;
+  position: relative;
+  z-index: 1;
+}
+
+/* Grid de estadísticas */
+.stats-grid-cosmic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.stat-card-cosmic {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  animation: cardFloat 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.stat-card-cosmic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: cardShimmer 2.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.crystal-card {
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.6), 0 0 40px rgba(236, 72, 153, 0.4);
+  animation: crystalGlow 2s ease-in-out infinite alternate;
+}
+
+.crystal-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.7), 0 0 50px rgba(124, 58, 237, 0.5);
+}
+
+.time-card {
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(34, 211, 238, 0.4);
+  animation: timeGlow 2s ease-in-out infinite alternate;
+  animation-delay: -0.7s;
+}
+
+.time-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.7), 0 0 50px rgba(59, 130, 246, 0.5);
+}
+
+.questions-card {
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(234, 179, 8, 0.4);
+  animation: questionsGlow 2s ease-in-out infinite alternate;
+  animation-delay: -1.4s;
+}
+
+.questions-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(234, 179, 8, 0.7), 0 0 50px rgba(34, 197, 94, 0.5);
+}
+
+@keyframes cardShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes crystalGlow {
+  0% { 
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.4), 0 0 50px rgba(236, 72, 153, 0.2);
+    border-image: linear-gradient(135deg, #7C3AED, #EC4899) 1;
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.6), 0 0 70px rgba(236, 72, 153, 0.4);
+    border-image: linear-gradient(135deg, #EC4899, #7C3AED) 1;
+  }
+}
+
+@keyframes timeGlow {
+  0% { 
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4), 0 0 50px rgba(34, 211, 238, 0.2);
+    border-image: linear-gradient(135deg, #3B82F6, #22D3EE) 1;
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 70px rgba(34, 211, 238, 0.4);
+    border-image: linear-gradient(135deg, #22D3EE, #3B82F6) 1;
+  }
+}
+
+@keyframes questionsGlow {
+  0% { 
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.4), 0 0 50px rgba(234, 179, 8, 0.2);
+    border-image: linear-gradient(135deg, #22C55E, #EAB308) 1;
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6), 0 0 70px rgba(234, 179, 8, 0.4);
+    border-image: linear-gradient(135deg, #EAB308, #22C55E) 1;
+  }
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.stat-card-cosmic:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.stat-icon-cosmic {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  display: block;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+  animation: iconPulse 2s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes iconPulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+  }
+  50% { 
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+  }
+}
+
+.stat-value-cosmic {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EAB308 50%, #FACC15 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: valueShimmer 3s ease-in-out infinite;
+  margin-bottom: 8px;
+  text-shadow: 0 0 20px #EAB308;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes valueShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.stat-label-cosmic {
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  opacity: 0.95;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+/* Avatar del planeta - Espacio visual grande con hover brillante */
+.planet-avatar-cosmic {
+  margin: 30px 0;
+  padding: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.planet-avatar-cosmic:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3), 0 0 100px rgba(124, 58, 237, 0.2);
+  transform: scale(1.05);
+}
+
+.avatar-emoji-cosmic {
+  font-size: 6rem;
+  display: block;
+  text-align: center;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.7));
+  animation: planetPulse 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.planet-avatar-cosmic:hover .avatar-emoji-cosmic {
+  filter: drop-shadow(0 0 50px rgba(255, 255, 255, 1)) drop-shadow(0 0 80px rgba(124, 58, 237, 0.6));
+  animation: planetGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes planetPulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.7));
+  }
+  50% { 
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.9));
+  }
+}
+
+@keyframes planetGlow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 1)) drop-shadow(0 0 80px rgba(124, 58, 237, 0.6));
+  }
+  50% { 
+    filter: drop-shadow(0 0 70px rgba(255, 255, 255, 1)) drop-shadow(0 0 120px rgba(124, 58, 237, 0.8));
+  }
+}
+
+/* Mensaje de afinidad - Caja horizontal con degradado morado→azul */
+.affinity-message-cosmic {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.7) 0%, rgba(59, 130, 246, 0.7) 100%);
+  backdrop-filter: blur(20px);
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #7C3AED, #3B82F6) 1;
+  border-radius: 16px;
+  padding: 28px;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+  animation: affinityGlow 2.5s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Layout horizontal para planeta aliado - emoji izquierda + texto derecha */
+.planet-info-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  text-align: left;
+}
+
+.planet-text-content {
+  flex: 1;
+}
+
+.affinity-message-cosmic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: affinityShimmer 4s ease-in-out infinite;
+}
+
+@keyframes affinityGlow {
+  0% { 
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+    border-image: linear-gradient(135deg, #7C3AED, #3B82F6) 1;
+  }
+  100% { 
+    box-shadow: 0 0 50px rgba(124, 58, 237, 0.6), 0 0 80px rgba(59, 130, 246, 0.4);
+    border-image: linear-gradient(135deg, #3B82F6, #7C3AED) 1;
+  }
+}
+
+@keyframes affinityShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.affinity-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px #EAB308;
+  position: relative;
+  z-index: 1;
+}
+
+.affinity-description {
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  opacity: 0.95;
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+/* Botón Dashboard - Glassmorphism con hover glow amarillo */
+.dashboard-button-cosmic {
+  background: linear-gradient(135deg, #7C3AED, #3B82F6);
+  border-radius: 15px;
+  padding: 12px 24px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.7), 0 0 25px rgba(59, 130, 246, 0.5);
+  transition: all 0.3s ease;
+  font-size: 1.3rem;
+  position: relative;
+  overflow: hidden;
+  animation: buttonPulse 3s ease-in-out infinite;
+}
+
+.dashboard-button-cosmic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: buttonShimmer 3s ease-in-out infinite;
+}
+
+.dashboard-button-cosmic:hover {
+  background: linear-gradient(135deg, #EC4899, #7C3AED);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(59, 130, 246, 0.7);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.dashboard-button-cosmic:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+@keyframes buttonPulse {
+  0%, 100% { 
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1), 0 0 50px rgba(234, 179, 8, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.2), 0 0 70px rgba(234, 179, 8, 0.2);
+  }
+}
+
+@keyframes buttonShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes buttonGlowHover {
+  0%, 100% { 
+    box-shadow: 0 0 50px #EAB308, 0 0 100px rgba(234, 179, 8, 0.4), 0 15px 40px rgba(234, 179, 8, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 70px #EAB308, 0 0 140px rgba(234, 179, 8, 0.6), 0 20px 50px rgba(234, 179, 8, 0.4);
+  }
+}
+
+/* Responsive para resultados cósmicos */
+@media (max-width: 768px) {
+  .stats-grid-cosmic {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .level-text-cosmic {
+    font-size: 1.4rem;
+  }
+  
+  .stat-value-cosmic {
+    font-size: 1.6rem;
+  }
+  
+  .avatar-emoji-cosmic {
+    font-size: 4rem;
+  }
+  
+  .affinity-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Pantalla de Resultados Gamificada */
+.result-celebration {
+  font-size: 48px;
+  margin-bottom: 24px;
+  animation: celebrationBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes celebrationBounce {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(5deg); }
+  50% { transform: scale(1.05) rotate(0deg); }
+  75% { transform: scale(1.1) rotate(-5deg); }
+}
+
+.game-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 32px 0;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(124, 58, 237, 0.1));
+  border: 2px solid var(--crystal-border);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--crystal-glass);
+  border: 1px solid var(--crystal-border);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: magicShimmer 2s ease-in-out infinite;
+  animation-delay: calc(var(--index, 0) * 0.5s);
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-lift);
+}
+
+.stat-icon {
+  color: var(--cosmic-blue);
+  filter: drop-shadow(0 0 10px currentColor);
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.stat-value {
+  font-family: var(--font-magic);
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple), var(--magic-green));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: energyFlow 3s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Resultado del planeta */
+.planet-result {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+  border-radius: 20px;
+  border: 2px solid rgba(236, 72, 153, 0.4);
+  backdrop-filter: blur(15px);
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.retry-button, .continue-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: white;
+  box-shadow: 0 5px 20px rgba(239, 68, 68, 0.3);
+}
+
+.retry-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5);
+  border-color: #FFD700;
+}
+
+.continue-button {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+}
+
+.continue-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
+  border-color: #FFD700;
+}
+
+.time-up-message {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.1));
+  border: 2px solid rgba(255, 107, 107, 0.3);
+  border-radius: 15px;
+  padding: 16px 24px;
+  margin: 20px 0;
+  color: #FFB3B3;
+  font-weight: 600;
+  text-align: center;
+  animation: pulseWarning 2s ease-in-out infinite;
+}
+
+/* ===== Animaciones para Opciones Interactivas ===== */
+@keyframes rippleEffect {
+  0% {
+    box-shadow: 0 0 0 0 var(--option-color);
+  }
+  70% {
+    box-shadow: 0 0 0 20px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
