@@ -20,7 +20,6 @@ KallpaWarmIA es una plataforma educativa de vanguardia que integra la inteligenc
 - **Nickname: carla
 - **contraseña: <img width="136" height="17" alt="image" src="https://github.com/user-attachments/assets/88373235-f188-4cee-b0d5-a048a6c4bca5" />
 
-- https://9000-firebase-studio-1755809849536.cluster-ocv3ypmyqfbqysslgd7zlhmxek.cloudworkstations.dev/
 
 
 ## ✨ Características Principales
