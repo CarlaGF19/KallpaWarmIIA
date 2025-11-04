@@ -18,7 +18,7 @@ KallpaWarmIA es una plataforma educativa de vanguardia que integra la inteligenc
 
 ## Datos de ingreso
 - **Nickname: carla
-- **contraseña: <img width="136" height="17" alt="image" src="https://github.com/user-attachments/assets/88373235-f188-4cee-b0d5-a048a6c4bca5" />
+- **contraseña: [b2Kn9w5LY57eGXC*]
 
 
 
@@ -39,12 +39,6 @@ KallpaWarmIA es una plataforma educativa de vanguardia que integra la inteligenc
 - **Posibilidad de comunicarse en quechua**
   
   <img width="700" height="700" alt="image" src="https://github.com/user-attachments/assets/b1f57ba4-ab5c-4c93-9a21-25076630944a" />
-
-
-
-
-
-
 
 
 
