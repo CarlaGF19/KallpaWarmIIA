@@ -17,8 +17,9 @@
 KallpaWarmIA es una plataforma educativa de vanguardia que integra la inteligencia artificial con metodologías de aprendizaje innovadoras. Inspirada en la cosmovisión andina, la plataforma ofrece experiencias educativas inmersivas, chatbots inteligentes, y herramientas de evaluación personalizadas para estudiantes de todas las edades.
 
 ## Datos de ingreso
-- **Nickname: carla
-- **contraseña: b2Kn9w5LY57eGXC**
+- **Nickname: carla**
+- **contraseña:** <img width="138" height="16" alt="image" src="https://github.com/user-attachments/assets/67b3b686-7303-42a6-a03c-cba9ba2faba5" />
+
 -
 
 
