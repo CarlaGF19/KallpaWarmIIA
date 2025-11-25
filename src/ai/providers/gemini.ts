@@ -1,11 +1,30 @@
 
 import "server-only";
+import { GoogleGenAI } from "@google/genai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export type Msg = { role: "system" | "user" | "assistant"; content: string };
+export type GenParams = { temperature?: number; topP?: number; topK?: number; maxOutputTokens?: number };
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const modelId = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+if (!apiKey) throw new Error("Falta GEMINI_API_KEY/GOOGLE_API_KEY en el entorno");
+const genAIv2 = new GoogleGenAI({ apiKey });
+const genAI = new GoogleGenerativeAI(apiKey);
+const modelId = process.env.GEMINI_MODEL || process.env.GOOGLE_MODEL || "gemini-2.5-flash";
+
+const cache = new Map<string, { t: number; v: string }>();
+const CACHE_TTL = 60000;
+const CACHE_MAX = 100;
+function getCache(k: string) {
+  const e = cache.get(k);
+  if (!e) return undefined;
+  if (Date.now() - e.t > CACHE_TTL) { cache.delete(k); return undefined; }
+  return e.v;
+}
+function setCache(k: string, v: string) {
+  cache.set(k, { t: Date.now(), v });
+  if (cache.size > CACHE_MAX) { const fk = cache.keys().next().value as string; if (fk) cache.delete(fk); }
+}
 
 const SYSTEM = `Identidad (12–17): Eres KallpaWarmIA, mentora cálida y carismática para niñas y jóvenes STEAM.
 Saludo inicial (solo primer turno): “¡Rimaykullayki! Hola. Soy KallpaWarmIA, tu mentora digital para conquistar el mundo STEM. ¿Deseas continuar en quechua o prefieres que hablemos en español? Elige: [Español] | [Quechua]”.
@@ -49,28 +68,67 @@ function splitHistory(messages: Msg[]) {
   return { history, lastUser };
 }
 
-export async function chatOnceGemini(messages: Msg[], temperature = 0.6) {
+export async function chatOnceGemini(messages: Msg[], params: GenParams = {}) {
   const { history, lastUser } = splitHistory(messages);
-  const model = genAI.getGenerativeModel({
-    model: modelId,
-    systemInstruction: SYSTEM,
-    generationConfig: { temperature, maxOutputTokens: 200, topP: 0.9, topK: 40 },
-  });
-  const chat = model.startChat({ history });
-  const res = await chat.sendMessage(lastUser);
-  return res.response.text();
+  const temperature = params.temperature ?? 0.6;
+  const topP = params.topP ?? 0.85;
+  const topK = params.topK ?? 40;
+  const maxOutputTokens = params.maxOutputTokens ?? 512;
+  const tryModels = [modelId, "gemini-2.0-flash", "gemini-1.5-flash"];
+  let lastErr: any;
+  for (const m of tryModels) {
+    const key = `${m}|${temperature}|${topP}|${topK}|${lastUser}|${history.length}`;
+    const c = getCache(key);
+    if (c) return c;
+    try {
+      const res = await genAIv2.models.generateContent({
+        model: m,
+        contents: `${SYSTEM}\n\n${lastUser}`,
+      });
+      const txt = (res as any)?.text;
+      if (txt) { setCache(key, txt); return txt; }
+    } catch (e) {
+      lastErr = e;
+    }
+    try {
+      const model = genAI.getGenerativeModel({
+        model: m,
+        systemInstruction: SYSTEM,
+        generationConfig: { temperature, topP, topK },
+      });
+      const chat = model.startChat({ history });
+      const res = await chat.sendMessage(lastUser);
+      const txt = res.response.text();
+      if (txt) { setCache(key, txt); return txt; }
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr;
 }
 
-export async function* chatStreamGemini(messages: Msg[], temperature = 0.6) {
+export async function* chatStreamGemini(messages: Msg[], params: GenParams = {}) {
   const { history, lastUser } = splitHistory(messages);
-  const model = genAI.getGenerativeModel({
-    model: modelId,
-    systemInstruction: SYSTEM,
-    generationConfig: { temperature, maxOutputTokens: 200, topP: 0.9, topK: 40 },
-  });
-  const chat = model.startChat({ history });
-  const stream = await chat.sendMessageStream(lastUser);
-  for await (const chunk of stream.stream) {
+  const temperature = params.temperature ?? 0.6;
+  const topP = params.topP ?? 0.85;
+  const topK = params.topK ?? 40;
+  const maxOutputTokens = params.maxOutputTokens ?? 512;
+  const tryModels = [modelId, "gemini-2.0-flash", "gemini-1.5-flash"];
+  let stream;
+  for (const m of tryModels) {
+    try {
+      const model = genAI.getGenerativeModel({
+        model: m,
+        systemInstruction: SYSTEM,
+        generationConfig: { temperature, topP, topK },
+      });
+      const chat = model.startChat({ history });
+      stream = await chat.sendMessageStream(lastUser);
+      break;
+    } catch {}
+  }
+  if (!stream) throw new Error("No se pudo iniciar el stream");
+  for await (const chunk of (stream as any).stream) {
     const text = chunk.text();
     if (text) yield text;
   }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
+import { useToast } from '@/hooks/use-toast';
 import { Mic, MicOff, Volume2, VolumeX, MoreVertical, Trash2, Copy, RefreshCw, User, Settings, HelpCircle, MessageSquare, Loader2, AlertCircle, Send, Bot } from 'lucide-react';
 
 type ChatMessage = {
@@ -39,6 +40,7 @@ export function ChatIA() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   // Debug: Log component state
   console.log('ChatIA Debug:', { input, isLoading, messagesCount: messages.length });
@@ -64,11 +66,22 @@ export function ChatIA() {
       
       const assistantMessage: ChatMessage = { role: 'assistant', content: reply };
       setMessages(prev => [...prev, assistantMessage]);
+      if (!reply || typeof reply !== 'string' || !reply.trim()) {
+        toast({
+          title: 'Respuesta vacía',
+          description: 'El asistente no devolvió contenido. Revisa la configuración del modelo o la API key.',
+        });
+      }
 
     } catch (error: any) {
       console.error("Error fetching chat response:", error);
       const errorMessage: ChatMessage = { role: 'assistant', content: `Lo siento, ocurrió un error. Detalle: ${error.message}` };
       setMessages(prev => [...prev, errorMessage]);
+      toast({
+        title: 'Error en el chat',
+        description: error?.message || 'Fallo inesperado al procesar tu mensaje.',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }
