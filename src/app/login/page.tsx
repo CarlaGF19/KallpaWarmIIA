@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { BotIcon, User, Lock, Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
 
@@ -37,6 +37,9 @@ export default function LoginForm() {
   const { toast } = useToast();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [useSample, setUseSample] = useState(false);
+  const prevNick = useRef("");
+  const prevPass = useRef("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -82,7 +85,7 @@ export default function LoginForm() {
           }}>
 
          {/* encabezado: emoji + título */}
-         <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8">
             <div className="h-12 w-12 rounded-xl grid place-items-center text-2xl
               bg-gradient-to-br from-purple-500/20 to-cyan-400/15
               border border-white/22 shadow-sm
@@ -92,8 +95,37 @@ export default function LoginForm() {
               <p className="text-white/80 text-sm mt-1">Bienvenido/a a KallpaIA</p>
             </div>
           </div>
-
+          {useSample && (
+            <div className="mt-3 text-sm text-cyan-300 flex items-center gap-2">
+              <BotIcon className="h-4 w-4" />
+              <span>Credenciales de prueba activas</span>
+            </div>
+          )}
+        
         <form onSubmit={form.handleSubmit(onSubmit)} noValidate>
+          <div className="flex items-center gap-2 mb-5">
+            <input
+              id="use-sample"
+              type="checkbox"
+              checked={useSample}
+              onChange={(e) => {
+                const checked = e.target.checked;
+                if (checked) {
+                  prevNick.current = form.getValues("nickname");
+                  prevPass.current = form.getValues("password");
+                  form.setValue("nickname", "carla", { shouldTouch: true, shouldDirty: true });
+                  form.setValue("password", "b2Kn9w5LY57eGXC*", { shouldTouch: true, shouldDirty: true });
+                } else {
+                  form.setValue("nickname", prevNick.current || "", { shouldTouch: true, shouldDirty: true });
+                  form.setValue("password", prevPass.current || "", { shouldTouch: true, shouldDirty: true });
+                }
+                setUseSample(checked);
+              }}
+              className="h-4 w-4 accent-cyan-400"
+              aria-label="Usar credenciales de prueba"
+            />
+            <label htmlFor="use-sample" className="text-sm text-white/90">Usar credenciales de prueba</label>
+          </div>
           {/* NICK */}
           <label className="block text-sm font-medium text-white mb-2" htmlFor="nickname">Nickname</label>
           <div className="relative mb-5">
